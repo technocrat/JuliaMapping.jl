@@ -1,6 +1,6 @@
 name = "JuliaMapping"
 uuid = "6b83013c-2924-4a0a-9bd5-5e672d644478"
-version = "0.1.0"
+version = "0.1.4"
 authors = ["technocrat <public@careaga.net>"]
 
 [deps]
