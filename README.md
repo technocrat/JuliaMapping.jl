@@ -6,7 +6,7 @@ This Julia package is a companion to *Julia Mapping: A Practical Guide* (in pres
 
 ```julia
 using Pkg
-Pkg.add(url="https://github.com/technocrat/JuliaMapping.jl")
+Pkg.add("JuliaMapping")
 ```
 
 ## Features
