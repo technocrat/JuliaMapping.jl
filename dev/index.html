@@ -1,0 +1,2391 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>JuliaMapping Documentation — JuliaMapping.jl</title>
+  <link rel="stylesheet" href="./assets/materialdocs.css?v=ca5aa1fe">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;500;600;700&family=Source+Sans+3:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap">
+  <meta name="title" content="JuliaMapping Documentation — JuliaMapping.jl">
+  <meta property="og:title" content="JuliaMapping Documentation — JuliaMapping.jl">
+  <meta property="twitter:title" content="JuliaMapping Documentation — JuliaMapping.jl">
+  <meta name="description" content="Documentation for JuliaMapping.jl.">
+  <meta property="og:description" content="Documentation for JuliaMapping.jl.">
+  <meta property="twitter:description" content="Documentation for JuliaMapping.jl.">
+  <meta property="og:url" content="https://technocrat.github.io/JuliaMapping.jl/">
+  <meta property="twitter:url" content="https://technocrat.github.io/JuliaMapping.jl/">
+  <link rel="canonical" href="https://technocrat.github.io/JuliaMapping.jl/">
+  <script>
+    (function(){
+      document.documentElement.classList.add('no-transition');
+      var t=localStorage.getItem('md-theme');if(t)document.documentElement.setAttribute('data-theme',t);
+      window.addEventListener('load',function(){setTimeout(function(){document.documentElement.classList.remove('no-transition');},50);});
+    })()
+  </script>
+</head>
+<body data-warn-outdated>
+  <header class="md-navbar">
+    <button id="md-hamburger" class="md-icon-btn md-hamburger" aria-label="Toggle navigation" aria-expanded="false"><svg class="md-icon" viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true" focusable="false"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg></button>
+    <span class="md-navbar-title">JuliaMapping.jl</span>
+    <span class="md-navbar-spacer"></span>
+    <button id="md-search-btn" class="md-search-bar" aria-label="Search documentation" aria-expanded="false">
+      <svg class="md-icon md-search-bar-icon" viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true" focusable="false"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+      <span class="md-search-bar-label">Search docs</span>
+      <kbd class="md-search-bar-kbd">Ctrl K</kbd>
+    </button>
+    <div id="md-version" class="md-version" hidden>
+      <button id="md-version-btn" class="md-version-btn" aria-haspopup="listbox" aria-expanded="false" aria-label="Select documentation version">
+        <span id="md-version-current" class="md-version-current"></span>
+        <svg class="md-icon md-version-caret" viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true" focusable="false"><path d="M7 10l5 5 5-5z"/></svg>
+      </button>
+      <ul id="md-version-menu" class="md-version-menu" role="listbox" hidden></ul>
+    </div>
+    <a class="md-icon-btn md-repo-link" href="https://github.com/technocrat/JuliaMapping.jl" title="View the repository on GitHub" aria-label="View the repository on GitHub" rel="noopener" target="_blank"><svg class="md-icon" viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 .3a12 12 0 00-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 0-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.2.5-2.3 1.3-3.1-.2-.4-.6-1.6.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 016 0c2.3-1.5 3.3-1.2 3.3-1.2.7 1.6.2 2.8.1 3.2.8.8 1.3 1.9 1.3 3.2 0 4.6-2.8 5.6-5.5 5.9.5.4.9 1.1.9 2.2v3.3c0 .3.1.7.8.6A12 12 0 0012 .3z"/></svg><span class="md-repo-label">GitHub</span></a>
+    <button id="md-theme-toggle" class="md-icon-btn" title="Toggle dark mode" aria-label="Toggle dark mode"><svg class="md-icon md-icon-light" viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1zM5.99 4.58a.996.996 0 00-1.41 0 .996.996 0 000 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41L5.99 4.58zm12.37 12.37a.996.996 0 00-1.41 0 .996.996 0 000 1.41l1.06 1.06c.39.39 1.03.39 1.41 0a.996.996 0 000-1.41l-1.06-1.06zm1.06-10.96a.996.996 0 000-1.41.996.996 0 00-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06zM7.05 18.36a.996.996 0 000-1.41.996.996 0 00-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06z"/></svg><svg class="md-icon md-icon-dark" viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"/></svg></button>
+  </header>
+  <div class="md-layout md-layout-no-sidebar">
+    <aside class="md-toc">
+      <div class="md-toc-inner">
+        <p class="md-toc-title">On this page</p>
+          <a class="md-toc-link md-toc-h2" href="#Overview">Overview</a>
+          <a class="md-toc-link md-toc-h2" href="#Getting-Started">Getting Started</a>
+          <a class="md-toc-link md-toc-h2" href="#API-Reference">API Reference</a>
+      </div>
+    </aside>
+    <main class="md-content">
+      <article class="md-article">
+      <div class="md-article-actions"><a class="md-icon-btn md-edit-link" href="https://github.com/technocrat/JuliaMapping.jl/blob/main/docs/src/index.md" title="Edit source on GitHub" aria-label="Edit source on GitHub"><svg class="md-icon" viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true" focusable="false"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a.996.996 0 000-1.41l-2.34-2.34a.996.996 0 00-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg></a></div>
+<h1 id="JuliaMapping-Documentation" class="md-heading">JuliaMapping Documentation<a href="#JuliaMapping-Documentation" class="md-heading-anchor" aria-label="Link to this section">#</a></h1>
+<p>Welcome to the JuliaMapping.jl documentation.</p>
+<h2 id="Overview" class="md-heading">Overview<a href="#Overview" class="md-heading-anchor" aria-label="Link to this section">#</a></h2>
+<p>JuliaMapping is a Julia package designed for mapping and geospatial analysis tasks.</p>
+<h2 id="Getting-Started" class="md-heading">Getting Started<a href="#Getting-Started" class="md-heading-anchor" aria-label="Link to this section">#</a></h2>
+<div class="md-code-block">
+<button class="md-copy-btn" title="Copy to clipboard" aria-label="Copy code"><span class="md-copy-icon">⧉</span><span class="md-copy-feedback">Copied!</span></button>
+<pre><code class="language-julia">using JuliaMapping</code></pre>
+</div>
+<h2 id="API-Reference" class="md-heading">API Reference<a href="#API-Reference" class="md-heading-anchor" aria-label="Link to this section">#</a></h2>
+<div class="md-docstring" id="JuliaMapping.add_col_totals-Tuple{DataFrames.DataFrame}">
+<div class="md-docstring-header">
+<h4 class="md-docstring-binding"><code>JuliaMapping.add_col_totals</code> — <span class="md-docstring-sig">Tuple{DataFrames.DataFrame}</span></h4>
+<a class="md-docstring-source" href="https://github.com/technocrat/JuliaMapping.jl/blob/6a3360c9e886bddc14ebd50c886fe5e96d7398e4/src/margins.jl#L21-L24" title="View source">source</a>
+</div>
+<div class="md-docstring-content">
+<div class="md-code-block">
+<button class="md-copy-btn" title="Copy to clipboard" aria-label="Copy code"><span class="md-copy-icon">⧉</span><span class="md-copy-feedback">Copied!</span></button>
+<pre><code class="language-julia">add_col_totals(df; total_row_name=&quot;Total&quot;, cols_to_sum=nothing)</code></pre>
+</div>
+<p>Append a final row with per-column totals. Non-numeric columns get a type-compatible label.</p>
+</div>
+</div>
+<div class="md-docstring" id="JuliaMapping.add_row_totals-Tuple{DataFrames.DataFrame}">
+<div class="md-docstring-header">
+<h4 class="md-docstring-binding"><code>JuliaMapping.add_row_totals</code> — <span class="md-docstring-sig">Tuple{DataFrames.DataFrame}</span></h4>
+<a class="md-docstring-source" href="https://github.com/technocrat/JuliaMapping.jl/blob/6a3360c9e886bddc14ebd50c886fe5e96d7398e4/src/margins.jl#L7-L10" title="View source">source</a>
+</div>
+<div class="md-docstring-content">
+<div class="md-code-block">
+<button class="md-copy-btn" title="Copy to clipboard" aria-label="Copy code"><span class="md-copy-icon">⧉</span><span class="md-copy-feedback">Copied!</span></button>
+<pre><code class="language-julia">add_row_totals(df; total_col_name=&quot;Total&quot;, cols_to_sum=nothing)</code></pre>
+</div>
+<p>Add a column with per-row totals (skips <code class="md-code-inline">missing</code>). By default sums all numeric columns.</p>
+</div>
+</div>
+<div class="md-docstring" id="JuliaMapping.add_totals-Tuple{DataFrames.DataFrame}">
+<div class="md-docstring-header">
+<h4 class="md-docstring-binding"><code>JuliaMapping.add_totals</code> — <span class="md-docstring-sig">Tuple{DataFrames.DataFrame}</span></h4>
+<a class="md-docstring-source" href="https://github.com/technocrat/JuliaMapping.jl/blob/6a3360c9e886bddc14ebd50c886fe5e96d7398e4/src/margins.jl#L37-L41" title="View source">source</a>
+</div>
+<div class="md-docstring-content">
+<div class="md-code-block">
+<button class="md-copy-btn" title="Copy to clipboard" aria-label="Copy code"><span class="md-copy-icon">⧉</span><span class="md-copy-feedback">Copied!</span></button>
+<pre><code class="language-julia">add_totals(df; total_row_name=&quot;Total&quot;, total_col_name=&quot;Total&quot;, cols_to_sum=nothing, format_commas=false)</code></pre>
+</div>
+<p>Add both a row totals column and a bottom totals row (which also totals the new column). Optionally formats all numeric values with comma separators.</p>
+</div>
+</div>
+<div class="md-docstring" id="JuliaMapping.analyze_skewness-Tuple{DataFrames.DataFrame, Symbol}">
+<div class="md-docstring-header">
+<h4 class="md-docstring-binding"><code>JuliaMapping.analyze_skewness</code> — <span class="md-docstring-sig">Tuple{DataFrames.DataFrame, Symbol}</span></h4>
+<a class="md-docstring-source" href="https://github.com/technocrat/JuliaMapping.jl/blob/6a3360c9e886bddc14ebd50c886fe5e96d7398e4/src/skew_test.jl#L1-L12" title="View source">source</a>
+</div>
+<div class="md-docstring-content">
+<div class="md-code-block">
+<button class="md-copy-btn" title="Copy to clipboard" aria-label="Copy code"><span class="md-copy-icon">⧉</span><span class="md-copy-feedback">Copied!</span></button>
+<pre><code class="language-julia">analyze_skewness(df::DataFrame, column::Symbol)</code></pre>
+</div>
+<p>Analyze the skewness of a dataset with multiple metrics.</p>
+<p><strong>Arguments</strong></p>
+<ul class="md-list-tight">
+<li><p><code class="md-code-inline">df</code>: DataFrame containing the data</p>
+</li>
+<li><p><code class="md-code-inline">column</code>: Column name to analyze</p>
+</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul class="md-list-tight">
+<li><p>NamedTuple with skewness metrics</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="md-docstring" id="JuliaMapping.assess_data_spread">
+<div class="md-docstring-header">
+<h4 class="md-docstring-binding"><code>JuliaMapping.assess_data_spread</code> — <span class="md-docstring-sig">Union{Tuple{DataFrames.DataFrame, Symbol}, Tuple{DataFrames.DataFrame, Symbol, Int64}}</span></h4>
+<a class="md-docstring-source" href="https://github.com/technocrat/JuliaMapping.jl/blob/6a3360c9e886bddc14ebd50c886fe5e96d7398e4/src/choose_bin.jl#L3-L27" title="View source">source</a>
+</div>
+<div class="md-docstring-content">
+<div class="md-code-block">
+<button class="md-copy-btn" title="Copy to clipboard" aria-label="Copy code"><span class="md-copy-icon">⧉</span><span class="md-copy-feedback">Copied!</span></button>
+<pre><code class="language-julia">assess_data_spread(df::DataFrame, col::Symbol, n_bins::Int=5)</code></pre>
+</div>
+<p>Evaluate the distribution of data across equal-interval bins to determine if equal-interval  binning is appropriate for the specified column.</p>
+<p><strong>Arguments</strong></p>
+<ul class="md-list-tight">
+<li><p><code class="md-code-inline">df::DataFrame</code>: Input dataframe containing the data</p>
+</li>
+<li><p><code class="md-code-inline">col::Symbol</code>: Column name to analyze</p>
+</li>
+<li><p><code class="md-code-inline">n_bins::Int=5</code>: Number of bins to create for the analysis</p>
+</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul class="md-list-tight">
+<li><p><code class="md-code-inline">Vector{Int}</code>: Array containing the count of observations in each bin</p>
+</li>
+</ul>
+<p><strong>Output</strong></p>
+<p>Prints a detailed bin distribution report and recommendation for binning strategy. Warns if any bins contain less than 5% of total observations, suggesting alternative methods like Fisher-Jenks or quantile-based binning for better balance.</p>
+<p><strong>Example</strong></p>
+<div class="md-code-block">
+<button class="md-copy-btn" title="Copy to clipboard" aria-label="Copy code"><span class="md-copy-icon">⧉</span><span class="md-copy-feedback">Copied!</span></button>
+<pre><code class="language-julia">df = DataFrame(value = rand(1000))
+bin_counts = assess_data_spread(df, :value, 10)</code></pre>
+</div>
+</div>
+</div>
+<div class="md-docstring" id="JuliaMapping.assess_uniform_distribution-Tuple{DataFrames.DataFrame, Symbol}">
+<div class="md-docstring-header">
+<h4 class="md-docstring-binding"><code>JuliaMapping.assess_uniform_distribution</code> — <span class="md-docstring-sig">Tuple{DataFrames.DataFrame, Symbol}</span></h4>
+<a class="md-docstring-source" href="https://github.com/technocrat/JuliaMapping.jl/blob/6a3360c9e886bddc14ebd50c886fe5e96d7398e4/src/choose_bin.jl#L65-L93" title="View source">source</a>
+</div>
+<div class="md-docstring-content">
+<div class="md-code-block">
+<button class="md-copy-btn" title="Copy to clipboard" aria-label="Copy code"><span class="md-copy-icon">⧉</span><span class="md-copy-feedback">Copied!</span></button>
+<pre><code class="language-julia">assess_uniform_distribution(df::DataFrame, col::Symbol)</code></pre>
+</div>
+<p>Analyze whether data follows a uniform distribution pattern, helping determine  if equal-interval binning is suitable for the specified column.</p>
+<p><strong>Arguments</strong></p>
+<ul class="md-list-tight">
+<li><p><code class="md-code-inline">df::DataFrame</code>: Input dataframe containing the data</p>
+</li>
+<li><p><code class="md-code-inline">col::Symbol</code>: Column name to analyze for uniformity</p>
+</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul class="md-list-tight">
+<li><p><code class="md-code-inline">NamedTuple{(:skewness, :interval_cv), Tuple{Float64, Float64}}</code>: Tuple containing:</p>
+<ul class="md-list-tight">
+<li><p><code class="md-code-inline">skewness</code>: Measure of distribution asymmetry (0 indicates symmetry)</p>
+</li>
+<li><p><code class="md-code-inline">interval_cv</code>: Coefficient of variation for quantile intervals</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>Output</strong></p>
+<p>Prints skewness, interval coefficient of variation, and a uniformity assessment. Also generates a histogram visualization via <code class="md-code-inline">raw_hist()</code>.</p>
+<p><strong>Notes</strong></p>
+<ul class="md-list-tight">
+<li><p>Skewness near 0 and interval CV &lt; 0.3 suggest suitability for equal intervals</p>
+</li>
+<li><p>Higher values indicate consideration of alternative binning methods</p>
+</li>
+</ul>
+<p><strong>Example</strong></p>
+<div class="md-code-block">
+<button class="md-copy-btn" title="Copy to clipboard" aria-label="Copy code"><span class="md-copy-icon">⧉</span><span class="md-copy-feedback">Copied!</span></button>
+<pre><code class="language-julia">df = DataFrame(value = rand(1000))
+stats = assess_uniform_distribution(df, :value)</code></pre>
+</div>
+</div>
+</div>
+<div class="md-docstring" id="JuliaMapping.bullseye-Tuple{String, String}">
+<div class="md-docstring-header">
+<h4 class="md-docstring-binding"><code>JuliaMapping.bullseye</code> — <span class="md-docstring-sig">Tuple{String, String}</span></h4>
+<a class="md-docstring-source" href="https://github.com/technocrat/JuliaMapping.jl/blob/6a3360c9e886bddc14ebd50c886fe5e96d7398e4/src/bullseye.jl#L2-L35" title="View source">source</a>
+</div>
+<div class="md-docstring-content">
+<div class="md-code-block">
+<button class="md-copy-btn" title="Copy to clipboard" aria-label="Copy code"><span class="md-copy-icon">⧉</span><span class="md-copy-feedback">Copied!</span></button>
+<pre><code class="language-julia">bullseye(capital::String, capital_coords::String)</code></pre>
+</div>
+<p>Create an interactive HTML map with concentric circles (bullseye) centered on the specified capital city.</p>
+<p>This function generates a Leaflet-based interactive map displaying concentric circles at  fixed radii of 50, 100, 200, and 400 miles from the specified capital. The map includes  a marker at the center point and a legend showing the distance bands with their corresponding colors.</p>
+<p><strong>Arguments</strong></p>
+<ul class="md-list-tight">
+<li><p><code class="md-code-inline">capital::String</code>: The name of the capital city (used for the marker popup and output filename)</p>
+</li>
+<li><p><code class="md-code-inline">capital_coords::String</code>: Coordinates in DMS (Degrees, Minutes, Seconds) format &quot;DD° MM′ SS″ N/S, DD° MM′ SS″ E/W&quot;</p>
+</li>
+</ul>
+<p><strong>Details</strong></p>
+<ul class="md-list-tight">
+<li><p>Uses OpenStreetMap tiles for the base map</p>
+</li>
+<li><p>Concentric circles are drawn at 50, 100, 200, and 400 miles from center</p>
+</li>
+<li><p>Default color scheme: <code class="md-code-inline">#D32F2F</code>, <code class="md-code-inline">#388E3C</code>, <code class="md-code-inline">#1976D2</code>, <code class="md-code-inline">#FBC02D</code>, <code class="md-code-inline">#7B1FA2</code></p>
+</li>
+<li><p>Requires the <code class="md-code-inline">dms_to_decimal</code> function to convert coordinates</p>
+</li>
+</ul>
+<p><strong>Returns</strong></p>
+<p>Nothing. Creates an HTML file and opens it in the default web browser.</p>
+<p><strong>Output Files</strong></p>
+<p>Creates an HTML file named &quot;<code class="md-code-inline">{capital}.html</code>&quot; in the current working directory.</p>
+<p><strong>Example</strong></p>
+<div class="md-code-block">
+<button class="md-copy-btn" title="Copy to clipboard" aria-label="Copy code"><span class="md-copy-icon">⧉</span><span class="md-copy-feedback">Copied!</span></button>
+<pre><code class="language-julia">bullseye(&quot;Nashville&quot;, &quot;36° 09′ 44″ N, 86° 46′ 28″ W&quot;)
+# Creates &quot;Nashville.html&quot; and opens it in the browser</code></pre>
+</div>
+<p><strong>Notes</strong></p>
+<p>The generated HTML file is self-contained and can be shared or hosted independently.</p>
+</div>
+</div>
+<div class="md-docstring" id="JuliaMapping.check_outlier_emphasis-Tuple{DataFrames.DataFrame, Symbol}">
+<div class="md-docstring-header">
+<h4 class="md-docstring-binding"><code>JuliaMapping.check_outlier_emphasis</code> — <span class="md-docstring-sig">Tuple{DataFrames.DataFrame, Symbol}</span></h4>
+<a class="md-docstring-source" href="https://github.com/technocrat/JuliaMapping.jl/blob/6a3360c9e886bddc14ebd50c886fe5e96d7398e4/src/choose_bin.jl#L117-L144" title="View source">source</a>
+</div>
+<div class="md-docstring-content">
+<div class="md-code-block">
+<button class="md-copy-btn" title="Copy to clipboard" aria-label="Copy code"><span class="md-copy-icon">⧉</span><span class="md-copy-feedback">Copied!</span></button>
+<pre><code class="language-julia">check_outlier_emphasis(df::DataFrame, col::Symbol)</code></pre>
+</div>
+<p>Identify and quantify outliers in data to determine if equal-interval binning  would appropriately highlight extreme values.</p>
+<p><strong>Arguments</strong></p>
+<ul class="md-list-tight">
+<li><p><code class="md-code-inline">df::DataFrame</code>: Input dataframe containing the data</p>
+</li>
+<li><p><code class="md-code-inline">col::Symbol</code>: Column name to analyze for outliers</p>
+</li>
+</ul>
+<p><strong>Returns</strong></p>
+<p>Nothing (results are printed to console)</p>
+<p><strong>Output</strong></p>
+<p>Prints the percentage of outliers detected using the IQR method (1.5 × IQR rule). Provides recommendations based on outlier prevalence:</p>
+<ul class="md-list-tight">
+<li><p>If &gt;5% outliers: Confirms equal intervals will highlight these extremes</p>
+</li>
+<li><p>Suggests quantiles as alternative for balanced visualization</p>
+</li>
+</ul>
+<p><strong>Method</strong></p>
+<p>Uses Tukey&#39;s fence method: outliers are values outside [Q1 - 1.5×IQR, Q3 + 1.5×IQR]</p>
+<p><strong>Example</strong></p>
+<div class="md-code-block">
+<button class="md-copy-btn" title="Copy to clipboard" aria-label="Copy code"><span class="md-copy-icon">⧉</span><span class="md-copy-feedback">Copied!</span></button>
+<pre><code class="language-julia">df = DataFrame(value = [rand(95); rand(5) .* 100])  # Data with outliers
+check_outlier_emphasis(df, :value)</code></pre>
+</div>
+</div>
+</div>
+<div class="md-docstring" id="JuliaMapping.choose_binning_for_margins-Tuple{DataFrames.DataFrame}">
+<div class="md-docstring-header">
+<h4 class="md-docstring-binding"><code>JuliaMapping.choose_binning_for_margins</code> — <span class="md-docstring-sig">Tuple{DataFrames.DataFrame}</span></h4>
+<a class="md-docstring-source" href="https://github.com/technocrat/JuliaMapping.jl/blob/6a3360c9e886bddc14ebd50c886fe5e96d7398e4/src/choose_bin.jl#L394-L462" title="View source">source</a>
+</div>
+<div class="md-docstring-content">
+<div class="md-code-block">
+<button class="md-copy-btn" title="Copy to clipboard" aria-label="Copy code"><span class="md-copy-icon">⧉</span><span class="md-copy-feedback">Copied!</span></button>
+<pre><code class="language-julia">choose_binning_for_margins(df::DataFrame; k::Int=5) -&gt; Nothing</code></pre>
+</div>
+<p>Comprehensive analysis and recommendation for binning political margin data in choropleth maps.</p>
+<p>This function integrates multiple diagnostic approaches specifically tailored for political margin/vote share data. It considers skewness, clustering patterns, bin width variation, and domain-specific characteristics (competitive vs. landslide districts) to provide an evidence-based binning recommendation.</p>
+<p><strong>Arguments</strong></p>
+<ul class="md-list-tight">
+<li><p><code class="md-code-inline">df::DataFrame</code>: Input DataFrame containing margin data (must have <code class="md-code-inline">:margin_pct</code> column)</p>
+</li>
+<li><p><code class="md-code-inline">k::Int=5</code>: Number of bins to create</p>
+</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul class="md-list-tight">
+<li><p><code class="md-code-inline">Nothing</code>: Function prints comprehensive analysis and recommendation</p>
+</li>
+</ul>
+<p><strong>Details</strong></p>
+<p>The function performs the following analyses:</p>
+<ol class="md-list-tight">
+<li><p><strong>Skewness analysis</strong>: Evaluates distribution asymmetry</p>
+</li>
+<li><p><strong>Clustering detection</strong>: Identifies natural breaks in the data</p>
+</li>
+<li><p><strong>Quantile comparison</strong>: Assesses bin width variability</p>
+</li>
+<li><p><strong>Domain analysis</strong>: Calculates percentages of competitive and landslide districts</p>
+</li>
+</ol>
+<p><strong>Domain-Specific Thresholds</strong></p>
+<ul class="md-list-tight">
+<li><p><strong>Competitive districts</strong>: |margin| &lt; 10% (±0.1)</p>
+</li>
+<li><p><strong>Landslide districts</strong>: |margin| &gt; 30% (±0.3)</p>
+</li>
+</ul>
+<p><strong>Recommendation Logic</strong></p>
+<p>Recommends Fisher-Jenks if:</p>
+<ul class="md-list-tight">
+<li><blockquote class="md-blockquote">
+<p>30% of districts are competitive AND &lt;10% are landslides (high clustering)</p>
+</blockquote>
+</li>
+<li><p>Quantile width CV &gt; 2.0 (strong evidence of natural clusters)</p>
+</li>
+</ul>
+<p>Recommends Quantiles if:</p>
+<ul class="md-list-tight">
+<li><p>Skewness &gt; 1.5 (extreme skew requiring visual balance)</p>
+</li>
+<li><p>Data is more uniformly distributed</p>
+</li>
+</ul>
+<p><strong>Example</strong></p>
+<div class="md-code-block">
+<button class="md-copy-btn" title="Copy to clipboard" aria-label="Copy code"><span class="md-copy-icon">⧉</span><span class="md-copy-feedback">Copied!</span></button>
+<pre><code class="language-julia">choose_binning_for_margins(counties, k=5)
+# === BINNING RECOMMENDATION FOR MARGIN DATA ===
+# 
+# [Skewness Analysis output]
+# [Clustering Analysis output]
+# [Quantile Comparison output]
+# 
+# === DOMAIN-SPECIFIC ANALYSIS ===
+# Competitive districts (±10%): 1245 (39.8%)
+# Landslide districts (&gt;30%): 234 (7.5%)
+# 
+# === FINAL RECOMMENDATION ===
+# ✓ Use FISHER-JENKS
+#   Rationale: High concentration of competitive districts suggests
+#             natural clustering that Jenks will reveal better than quantiles</code></pre>
+</div>
+<p><strong>Use Cases</strong></p>
+<ul class="md-list-tight">
+<li><p>Electoral data visualization (vote margins, partisan lean)</p>
+</li>
+<li><p>Policy analysis (approval ratings, opinion polls)</p>
+</li>
+<li><p>Any ratio/percentage data with potential clustering around central values</p>
+</li>
+</ul>
+<p><strong>Prerequisites</strong></p>
+<p>Requires that the DataFrame has a <code class="md-code-inline">:margin_pct</code> column. For other margin columns, modify the function or create a standardized column first.</p>
+<p><strong>See also</strong></p>
+<p><a href="./#JuliaMapping.analyze_skewness-Tuple{DataFrames.DataFrame, Symbol}"><code class="md-code-inline">analyze_skewness</code></a>, <a href="./#JuliaMapping.detect_clustering-Tuple{DataFrames.DataFrame, Symbol}"><code class="md-code-inline">detect_clustering</code></a>, <a href="./#JuliaMapping.compare_quantile_vs_jenks-Tuple{DataFrames.DataFrame, Symbol}"><code class="md-code-inline">compare_quantile_vs_jenks</code></a></p>
+</div>
+</div>
+<div class="md-docstring" id="JuliaMapping.clip_rings_to_states-Tuple{Any, Any}">
+<div class="md-docstring-header">
+<h4 class="md-docstring-binding"><code>JuliaMapping.clip_rings_to_states</code> — <span class="md-docstring-sig">Tuple{Any, Any}</span></h4>
+<a class="md-docstring-source" href="https://github.com/technocrat/JuliaMapping.jl/blob/6a3360c9e886bddc14ebd50c886fe5e96d7398e4/src/clip_rings_to_states.jl#L2-L36" title="View source">source</a>
+</div>
+<div class="md-docstring-content">
+<div class="md-code-block">
+<button class="md-copy-btn" title="Copy to clipboard" aria-label="Copy code"><span class="md-copy-icon">⧉</span><span class="md-copy-feedback">Copied!</span></button>
+<pre><code class="language-julia">clip_rings_to_states(rings, state_union)</code></pre>
+</div>
+<p>Clip distance rings to state boundaries using spatial intersection.</p>
+<p><strong>Arguments</strong></p>
+<ul class="md-list-tight">
+<li><p><code class="md-code-inline">rings</code>: Dictionary mapping distance values to ArchGDAL geometry objects representing distance rings</p>
+</li>
+<li><p><code class="md-code-inline">state_union</code>: ArchGDAL geometry object representing the union of all state boundaries</p>
+</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul class="md-list-tight">
+<li><p>Dictionary with the same keys as input <code class="md-code-inline">rings</code>, containing clipped geometry objects</p>
+</li>
+</ul>
+<p><strong>Details</strong></p>
+<p>This function clips each distance ring to the state boundaries by computing the spatial intersection between each ring and the state union. If clipping fails for any ring, the original unclipped geometry is retained to ensure the workflow continues.</p>
+<p><strong>Example</strong></p>
+<div class="md-code-block">
+<button class="md-copy-btn" title="Copy to clipboard" aria-label="Copy code"><span class="md-copy-icon">⧉</span><span class="md-copy-feedback">Copied!</span></button>
+<pre><code class="language-julia">using ArchGDAL
+
+# Create distance rings and state union
+rings = Dict(25 =&gt; ring_25_miles, 50 =&gt; ring_50_miles, 75 =&gt; ring_75_miles)
+state_boundary = create_state_union(states)
+
+# Clip rings to state boundaries
+clipped_rings = clip_rings_to_states(rings, state_boundary)</code></pre>
+</div>
+<p><strong>Notes</strong></p>
+<ul class="md-list-tight">
+<li><p>Progress is reported for each ring being clipped</p>
+</li>
+<li><p>Errors during intersection operations are caught and reported as warnings</p>
+</li>
+<li><p>Original geometries are preserved if clipping fails</p>
+</li>
+<li><p>Returns geometries suitable for visualization and further spatial analysis</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="md-docstring" id="JuliaMapping.compare_quantile_vs_jenks-Tuple{DataFrames.DataFrame, Symbol}">
+<div class="md-docstring-header">
+<h4 class="md-docstring-binding"><code>JuliaMapping.compare_quantile_vs_jenks</code> — <span class="md-docstring-sig">Tuple{DataFrames.DataFrame, Symbol}</span></h4>
+<a class="md-docstring-source" href="https://github.com/technocrat/JuliaMapping.jl/blob/6a3360c9e886bddc14ebd50c886fe5e96d7398e4/src/choose_bin.jl#L294-L355" title="View source">source</a>
+</div>
+<div class="md-docstring-content">
+<div class="md-code-block">
+<button class="md-copy-btn" title="Copy to clipboard" aria-label="Copy code"><span class="md-copy-icon">⧉</span><span class="md-copy-feedback">Copied!</span></button>
+<pre><code class="language-julia">compare_quantile_vs_jenks(df::DataFrame, col::Symbol; k::Int=5) -&gt; NamedTuple</code></pre>
+</div>
+<p>Compare quantile and Fisher-Jenks binning strategies by analyzing bin width variability.</p>
+<p>This function computes quantile breaks and evaluates whether the resulting bins have consistent widths. High variability in bin widths suggests that data has natural clustering that Fisher-Jenks would capture more effectively.</p>
+<p><strong>Arguments</strong></p>
+<ul class="md-list-tight">
+<li><p><code class="md-code-inline">df::DataFrame</code>: Input DataFrame containing the data</p>
+</li>
+<li><p><code class="md-code-inline">col::Symbol</code>: Column name to analyze</p>
+</li>
+<li><p><code class="md-code-inline">k::Int=5</code>: Number of bins to create</p>
+</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul class="md-list-tight">
+<li><p><code class="md-code-inline">NamedTuple</code> with fields:</p>
+<ul class="md-list-tight">
+<li><p><code class="md-code-inline">quantile_breaks</code>: Vector of k+1 break points from quantile method</p>
+</li>
+<li><p><code class="md-code-inline">width_cv</code>: Coefficient of variation of quantile bin widths</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>Interpretation</strong></p>
+<ul class="md-list-tight">
+<li><p><code class="md-code-inline">width_cv &lt; 1.0</code>: Quantile widths are relatively uniform → Quantiles appropriate</p>
+</li>
+<li><p><code class="md-code-inline">1.0 ≤ width_cv ≤ 2.0</code>: Moderate variation → Either method works, depends on goals</p>
+</li>
+<li><p><code class="md-code-inline">width_cv &gt; 2.0</code>: Highly variable widths → Data has clusters, Fisher-Jenks recommended</p>
+</li>
+</ul>
+<p><strong>Details</strong></p>
+<p>The coefficient of variation (CV) is calculated as: CV = σ(bin<em>widths) / μ(bin</em>widths)</p>
+<p>High CV indicates that some bins span large ranges while others span small ranges, which is a strong indicator of natural clustering in the data.</p>
+<p><strong>Example</strong></p>
+<div class="md-code-block">
+<button class="md-copy-btn" title="Copy to clipboard" aria-label="Copy code"><span class="md-copy-icon">⧉</span><span class="md-copy-feedback">Copied!</span></button>
+<pre><code class="language-julia">result = compare_quantile_vs_jenks(counties, :margin_pct, k=5)
+# === COMPARING QUANTILES VS FISHER-JENKS ===
+# 
+# QUANTILES (k=5):
+#   Bin 1: [-0.547, -0.263] - width: 0.284 - count: ~20.0%
+#   Bin 2: [-0.263, -0.109] - width: 0.154 - count: ~20.0%
+#   Bin 3: [-0.109, 0.176] - width: 0.285 - count: ~20.0%
+#   Bin 4: [0.176, 0.426] - width: 0.250 - count: ~20.0%
+#   Bin 5: [0.426, 0.831] - width: 0.405 - count: ~20.0%
+#   Width CV: 0.342
+# 
+# INTERPRETATION:
+# → Moderate variation in quantile widths
+#   Either method could work—depends on communication goals</code></pre>
+</div>
+<p><strong>Rationale</strong></p>
+<p>When quantile bins have very different widths, it means observations are unevenly distributed across the value range. This is exactly what Fisher-Jenks is designed to handle by finding optimal breakpoints between clusters.</p>
+<p><strong>Notes</strong></p>
+<ul class="md-list-tight">
+<li><p>This function analyzes quantiles only; for actual Fisher-Jenks breaks, use a dedicated package like <code class="md-code-inline">NaturalBreaks.jl</code> or implement the algorithm</p>
+</li>
+<li><p>By definition, quantile bins always have equal counts (~100/k percent each)</p>
+</li>
+<li><p>The diagnostic focuses on bin width variation as a proxy for clustering</p>
+</li>
+</ul>
+<p><strong>See also</strong></p>
+<p><a href="./#JuliaMapping.detect_clustering-Tuple{DataFrames.DataFrame, Symbol}"><code class="md-code-inline">detect_clustering</code></a>, <a href="./#JuliaMapping.choose_binning_for_margins-Tuple{DataFrames.DataFrame}"><code class="md-code-inline">choose_binning_for_margins</code></a></p>
+</div>
+</div>
+<div class="md-docstring" id="JuliaMapping.compare_skewness-Tuple{DataFrames.DataFrame, Symbol}">
+<div class="md-docstring-header">
+<h4 class="md-docstring-binding"><code>JuliaMapping.compare_skewness</code> — <span class="md-docstring-sig">Tuple{DataFrames.DataFrame, Symbol}</span></h4>
+<a class="md-docstring-source" href="https://github.com/technocrat/JuliaMapping.jl/blob/6a3360c9e886bddc14ebd50c886fe5e96d7398e4/src/skew_test.jl#L39-L50" title="View source">source</a>
+</div>
+<div class="md-docstring-content">
+<div class="md-code-block">
+<button class="md-copy-btn" title="Copy to clipboard" aria-label="Copy code"><span class="md-copy-icon">⧉</span><span class="md-copy-feedback">Copied!</span></button>
+<pre><code class="language-julia">compare_skewness(df::DataFrame, column::Symbol)</code></pre>
+</div>
+<p>Compare skewness before and after log transformation.</p>
+<p><strong>Arguments</strong></p>
+<ul class="md-list-tight">
+<li><p><code class="md-code-inline">df</code>: DataFrame containing the data</p>
+</li>
+<li><p><code class="md-code-inline">column</code>: Column name to analyze</p>
+</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul class="md-list-tight">
+<li><p>NamedTuple with original and log-transformed skewness</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="md-docstring" id="JuliaMapping.compute_fixed_intervals">
+<div class="md-docstring-header">
+<h4 class="md-docstring-binding"><code>JuliaMapping.compute_fixed_intervals</code> — <span class="md-docstring-sig">Union{Tuple{Vector{DataFrames.DataFrame}, Symbol}, Tuple{Vector{DataFrames.DataFrame}, Symbol, Int64}}</span></h4>
+<a class="md-docstring-source" href="https://github.com/technocrat/JuliaMapping.jl/blob/6a3360c9e886bddc14ebd50c886fe5e96d7398e4/src/choose_bin.jl#L238-L279" title="View source">source</a>
+</div>
+<div class="md-docstring-content">
+<div class="md-code-block">
+<button class="md-copy-btn" title="Copy to clipboard" aria-label="Copy code"><span class="md-copy-icon">⧉</span><span class="md-copy-feedback">Copied!</span></button>
+<pre><code class="language-julia">compute_fixed_intervals(dfs::Vector{DataFrame}, col::Symbol, n_bins::Int=5) -&gt; Vector{Float64}</code></pre>
+</div>
+<p>Calculate fixed equal-interval breaks across multiple DataFrames for consistent map series comparisons.</p>
+<p>When creating a series of choropleth maps (e.g., across time periods or regions), using consistent bin breaks enables meaningful visual comparison. This function computes global min/max across all datasets and creates equal-width intervals.</p>
+<p><strong>Arguments</strong></p>
+<ul class="md-list-tight">
+<li><p><code class="md-code-inline">dfs::Vector{DataFrame}</code>: Vector of DataFrames to analyze</p>
+</li>
+<li><p><code class="md-code-inline">col::Symbol</code>: Column name present in all DataFrames</p>
+</li>
+<li><p><code class="md-code-inline">n_bins::Int=5</code>: Number of bins to create</p>
+</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul class="md-list-tight">
+<li><p><code class="md-code-inline">Vector{Float64}</code>: Bin break points (length = <code class="md-code-inline">n_bins + 1</code>)</p>
+<ul class="md-list-tight">
+<li><p>First element is global minimum</p>
+</li>
+<li><p>Last element is global maximum</p>
+</li>
+<li><p>Interior elements divide range into equal widths</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>Use Cases</strong></p>
+<ul class="md-list-tight">
+<li><p>Time series maps (comparing same region across years)</p>
+</li>
+<li><p>Atlas-style maps (comparing different regions)</p>
+</li>
+<li><p>Multi-panel comparisons where color scales must match</p>
+</li>
+</ul>
+<p><strong>Example</strong></p>
+<div class="md-code-block">
+<button class="md-copy-btn" title="Copy to clipboard" aria-label="Copy code"><span class="md-copy-icon">⧉</span><span class="md-copy-feedback">Copied!</span></button>
+<pre><code class="language-julia"># Compare election results across 2020 and 2024
+breaks = compute_fixed_intervals([counties_2020, counties_2024], :margin_pct, 5)
+# Use these breaks for both maps to enable direct comparison
+# breaks will be something like: [-0.6, -0.36, -0.12, 0.12, 0.36, 0.6]</code></pre>
+</div>
+<p><strong>Notes</strong></p>
+<ul class="md-list-tight">
+<li><p>Ensures all maps use identical color-to-value mapping</p>
+</li>
+<li><p>May result in empty bins if data ranges differ substantially between DataFrames</p>
+</li>
+<li><p>Alternative to this approach: use quantiles computed on combined data</p>
+</li>
+</ul>
+<p><strong>See also</strong></p>
+<p><a href="./#JuliaMapping.compare_quantile_vs_jenks-Tuple{DataFrames.DataFrame, Symbol}"><code class="md-code-inline">compare_quantile_vs_jenks</code></a>, <a href="./#JuliaMapping.assess_data_spread"><code class="md-code-inline">assess_data_spread</code></a></p>
+</div>
+</div>
+<div class="md-docstring" id="JuliaMapping.create_county_union">
+<div class="md-docstring-header">
+<h4 class="md-docstring-binding"><code>JuliaMapping.create_county_union</code> — <span class="md-docstring-sig">Union{Tuple{DataFrames.DataFrame}, Tuple{DataFrames.DataFrame, Any}}</span></h4>
+<a class="md-docstring-source" href="https://github.com/technocrat/JuliaMapping.jl/blob/6a3360c9e886bddc14ebd50c886fe5e96d7398e4/src/create_county_union.jl#L4-L37" title="View source">source</a>
+</div>
+<div class="md-docstring-content">
+<div class="md-code-block">
+<button class="md-copy-btn" title="Copy to clipboard" aria-label="Copy code"><span class="md-copy-icon">⧉</span><span class="md-copy-feedback">Copied!</span></button>
+<pre><code class="language-julia">create_county_union(counties::DataFrame, geometry_col=:geometry)</code></pre>
+</div>
+<p>Create a union of all county geometries for use as a clipping boundary.</p>
+<p><strong>Arguments</strong></p>
+<ul class="md-list-tight">
+<li><p><code class="md-code-inline">counties</code>: DataFrame containing county geometries, typically loaded from a shapefile</p>
+</li>
+<li><p><code class="md-code-inline">geometry_col</code>: Symbol or string specifying the column name containing geometry data (default: <code class="md-code-inline">:geometry</code>)</p>
+</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul class="md-list-tight">
+<li><p>An ArchGDAL geometry object representing the union of all county boundaries</p>
+</li>
+</ul>
+<p><strong>Details</strong></p>
+<p>This function iteratively unions all county geometries to create a single boundary that can be used for clipping operations. The function includes progress reporting and error handling to manage large datasets with many counties.</p>
+<p><strong>Example</strong></p>
+<div class="md-code-block">
+<button class="md-copy-btn" title="Copy to clipboard" aria-label="Copy code"><span class="md-copy-icon">⧉</span><span class="md-copy-feedback">Copied!</span></button>
+<pre><code class="language-julia">using GeoDataFrames, ArchGDAL
+
+# Load county data
+counties = GeoDataFrames.read(&quot;data/counties.shp&quot;)
+
+# Create union for clipping
+county_boundary = create_county_union(counties)</code></pre>
+</div>
+<p><strong>Notes</strong></p>
+<ul class="md-list-tight">
+<li><p>Progress is reported every 500 counties processed</p>
+</li>
+<li><p>Errors during union operations are caught and reported as warnings</p>
+</li>
+<li><p>The function assumes geometries are in the same coordinate reference system</p>
+</li>
+<li><p>Returns an ArchGDAL geometry suitable for spatial clipping operations</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="md-docstring" id="JuliaMapping.create_county_union-Tuple{Any}">
+<div class="md-docstring-header">
+<h4 class="md-docstring-binding"><code>JuliaMapping.create_county_union</code> — <span class="md-docstring-sig">Tuple{Any}</span></h4>
+<a class="md-docstring-source" href="https://github.com/technocrat/JuliaMapping.jl/blob/6a3360c9e886bddc14ebd50c886fe5e96d7398e4/src/contours.jl#L1-L26" title="View source">source</a>
+</div>
+<div class="md-docstring-content">
+<div class="md-code-block">
+<button class="md-copy-btn" title="Copy to clipboard" aria-label="Copy code"><span class="md-copy-icon">⧉</span><span class="md-copy-feedback">Copied!</span></button>
+<pre><code class="language-julia">create_county_union(df; geometry_col=:geometry)</code></pre>
+</div>
+<p>Create a unified geometry representing the union of all county geometries in a DataFrame.</p>
+<p>This function iteratively combines all county geometries using ArchGDAL&#39;s union operation, which is useful for creating a boundary for clipping or masking operations.</p>
+<p><strong>Arguments</strong></p>
+<ul class="md-list-tight">
+<li><p><code class="md-code-inline">df</code>: DataFrame containing county geometry data</p>
+</li>
+<li><p><code class="md-code-inline">geometry_col</code>: Symbol specifying the column name containing ArchGDAL geometry objects (default: <code class="md-code-inline">:geometry</code>)</p>
+</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul class="md-list-tight">
+<li><p>An ArchGDAL geometry object representing the union of all input geometries</p>
+</li>
+</ul>
+<p><strong>Details</strong></p>
+<ul class="md-list-tight">
+<li><p>Progress is printed every 500 counties for large datasets</p>
+</li>
+<li><p>Handles union errors gracefully with warning messages</p>
+</li>
+<li><p>The result can be used for clipping contours or other spatial operations</p>
+</li>
+</ul>
+<p><strong>Example</strong></p>
+<div class="md-code-block">
+<button class="md-copy-btn" title="Copy to clipboard" aria-label="Copy code"><span class="md-copy-icon">⧉</span><span class="md-copy-feedback">Copied!</span></button>
+<pre><code class="language-julia">county_union = create_county_union(county_df)
+county_union = create_county_union(county_df, geometry_col=:geom)</code></pre>
+</div>
+</div>
+</div>
+<div class="md-docstring" id="JuliaMapping.create_filled_voting_contours!-Tuple{Any, Any}">
+<div class="md-docstring-header">
+<h4 class="md-docstring-binding"><code>JuliaMapping.create_filled_voting_contours!</code> — <span class="md-docstring-sig">Tuple{Any, Any}</span></h4>
+<a class="md-docstring-source" href="https://github.com/technocrat/JuliaMapping.jl/blob/6a3360c9e886bddc14ebd50c886fe5e96d7398e4/src/contours.jl#L140-L171" title="View source">source</a>
+</div>
+<div class="md-docstring-content">
+<div class="md-code-block">
+<button class="md-copy-btn" title="Copy to clipboard" aria-label="Copy code"><span class="md-copy-icon">⧉</span><span class="md-copy-feedback">Copied!</span></button>
+<pre><code class="language-julia">create_filled_voting_contours!(ga, df; geometry_col=:geometry, value_col=:republican_pct, resolution=150, colormap=:RdBu)</code></pre>
+</div>
+<p>Create a filled contour plot (like a topographic map) showing spatial interpolation of a value across geographic regions.</p>
+<p><strong>Arguments</strong></p>
+<ul class="md-list-tight">
+<li><p><code class="md-code-inline">ga</code>: An existing Makie plot axis/figure to add filled contours to</p>
+</li>
+<li><p><code class="md-code-inline">df</code>: DataFrame containing geometry and value columns for interpolation</p>
+</li>
+<li><p><code class="md-code-inline">geometry_col::Symbol=:geometry</code>: Column name containing ArchGDAL geometry objects (default: <code class="md-code-inline">:geometry</code>)</p>
+</li>
+<li><p><code class="md-code-inline">value_col::Symbol=:republican_pct</code>: Column name containing numeric values to interpolate (default: <code class="md-code-inline">:republican_pct</code>) Can also use <code class="md-code-inline">:democratic_pct</code>, <code class="md-code-inline">:third_party_pct</code>, margin data, or any numeric column</p>
+</li>
+<li><p><code class="md-code-inline">resolution::Int=150</code>: Grid resolution for interpolation (higher = smoother but slower)</p>
+</li>
+<li><p><code class="md-code-inline">colormap::Symbol=:RdBu</code>: Makie colormap for the filled regions Use <code class="md-code-inline">:RdBu</code> for red-blue diverging (good for margins), <code class="md-code-inline">:viridis</code> for sequential data, etc.</p>
+</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul class="md-list-tight">
+<li><p>Tuple of (filled<em>contours, interpolated</em>grid<em>Z, x</em>grid, y_grid)</p>
+</li>
+</ul>
+<p><strong>Details</strong></p>
+<ul class="md-list-tight">
+<li><p>Uses Gaussian kernel density weighting for smooth interpolation</p>
+</li>
+<li><p>Adaptive bandwidth based on data extent (slightly larger than <code class="md-code-inline">create_voting_contours!</code> for visibility)</p>
+</li>
+<li><p>Draws both filled regions and contour lines for dual representation</p>
+</li>
+<li><p>Filled regions have transparency (alpha=0.7) to show layer composition</p>
+</li>
+<li><p>Contour lines overlaid in black for clarity</p>
+</li>
+<li><p>Designed for political/electoral data visualization</p>
+</li>
+</ul>
+<p><strong>Example</strong></p>
+<div class="md-code-block">
+<button class="md-copy-btn" title="Copy to clipboard" aria-label="Copy code"><span class="md-copy-icon">⧉</span><span class="md-copy-feedback">Copied!</span></button>
+<pre><code class="language-julia">fig, ax, plt = scatter(counties_df.longitude, counties_df.latitude)
+cf, Z, x_grid, y_grid = create_filled_voting_contours!(ax, counties_df, value_col=:margin_pct, colormap=:RdBu)</code></pre>
+</div>
+</div>
+</div>
+<div class="md-docstring" id="JuliaMapping.create_isopleth_rings">
+<div class="md-docstring-header">
+<h4 class="md-docstring-binding"><code>JuliaMapping.create_isopleth_rings</code> — <span class="md-docstring-sig">Union{Tuple{Any}, Tuple{Any, Any}}</span></h4>
+<a class="md-docstring-source" href="https://github.com/technocrat/JuliaMapping.jl/blob/6a3360c9e886bddc14ebd50c886fe5e96d7398e4/src/create_isopleth_rings.jl#L3-L45" title="View source">source</a>
+</div>
+<div class="md-docstring-content">
+<div class="md-code-block">
+<button class="md-copy-btn" title="Copy to clipboard" aria-label="Copy code"><span class="md-copy-icon">⧉</span><span class="md-copy-feedback">Copied!</span></button>
+<pre><code class="language-julia">create_isopleth_rings(centroids_geo, distances=[25, 50, 75, 100, 150])</code></pre>
+</div>
+<p>Create nested isopleth rings around geographic centroids, similar to elevation contours.</p>
+<p><strong>Arguments</strong></p>
+<ul class="md-list-tight">
+<li><p><code class="md-code-inline">centroids_geo</code>: Vector of <code class="md-code-inline">Point2f</code> objects representing geographic centroids (longitude, latitude)</p>
+</li>
+<li><p><code class="md-code-inline">distances</code>: Vector of distances in miles for creating rings (default: <code class="md-code-inline">[25, 50, 75, 100, 150]</code>)</p>
+</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul class="md-list-tight">
+<li><p>Dictionary mapping distance values to ArchGDAL geometry objects representing nested rings</p>
+</li>
+</ul>
+<p><strong>Details</strong></p>
+<p>This function creates concentric rings around each centroid at specified distances. The rings are created as nested zones where each ring represents the area between its distance and the previous distance (e.g., 25-50 miles, 50-75 miles, etc.). This creates an isopleth-like visualization similar to elevation contours on topographic maps.</p>
+<p>The function:</p>
+<ol class="md-list-tight">
+<li><p>Converts distances from miles to degrees (approximate conversion: 1° ≈ 69 miles)</p>
+</li>
+<li><p>Creates circles around each centroid at each distance</p>
+</li>
+<li><p>Unions circles at the same distance to create zones</p>
+</li>
+<li><p>Creates rings by taking the difference between consecutive zones</p>
+</li>
+</ol>
+<p><strong>Example</strong></p>
+<div class="md-code-block">
+<button class="md-copy-btn" title="Copy to clipboard" aria-label="Copy code"><span class="md-copy-icon">⧉</span><span class="md-copy-feedback">Copied!</span></button>
+<pre><code class="language-julia">using GeometryBasics, ArchGDAL
+
+# Define centroids and distances
+centroids = [Point2f(-74.0, 40.7), Point2f(-87.6, 41.9)]  # NYC, Chicago
+distances = [50, 100, 150, 200]
+
+# Create isopleth rings
+rings = create_isopleth_rings(centroids, distances)</code></pre>
+</div>
+<p><strong>Notes</strong></p>
+<ul class="md-list-tight">
+<li><p>Distance conversion uses approximate factor of 69 miles per degree</p>
+</li>
+<li><p>First ring represents the area from 0 to the first distance</p>
+</li>
+<li><p>Subsequent rings represent areas between consecutive distances</p>
+</li>
+<li><p>Progress is reported for each distance being processed</p>
+</li>
+<li><p>Returns ArchGDAL geometries suitable for spatial operations and visualization</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="md-docstring" id="JuliaMapping.create_state_union">
+<div class="md-docstring-header">
+<h4 class="md-docstring-binding"><code>JuliaMapping.create_state_union</code> — <span class="md-docstring-sig">Union{Tuple{DataFrames.DataFrame}, Tuple{DataFrames.DataFrame, Any}}</span></h4>
+<a class="md-docstring-source" href="https://github.com/technocrat/JuliaMapping.jl/blob/6a3360c9e886bddc14ebd50c886fe5e96d7398e4/src/create_state_union.jl#L1-L34" title="View source">source</a>
+</div>
+<div class="md-docstring-content">
+<div class="md-code-block">
+<button class="md-copy-btn" title="Copy to clipboard" aria-label="Copy code"><span class="md-copy-icon">⧉</span><span class="md-copy-feedback">Copied!</span></button>
+<pre><code class="language-julia">create_state_union(states::DataFrame, geometry_col=:geometry)</code></pre>
+</div>
+<p>Create a union of all state geometries for use as a clipping boundary.</p>
+<p><strong>Arguments</strong></p>
+<ul class="md-list-tight">
+<li><p><code class="md-code-inline">states</code>: DataFrame containing state geometries, typically loaded from a shapefile</p>
+</li>
+<li><p><code class="md-code-inline">geometry_col</code>: Symbol or string specifying the column name containing geometry data (default: <code class="md-code-inline">:geometry</code>)</p>
+</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul class="md-list-tight">
+<li><p>An ArchGDAL geometry object representing the union of all state boundaries</p>
+</li>
+</ul>
+<p><strong>Details</strong></p>
+<p>This function iteratively unions all state geometries to create a single boundary that can be used for clipping operations. The function includes progress reporting and error handling to manage large datasets with many states.</p>
+<p><strong>Example</strong></p>
+<div class="md-code-block">
+<button class="md-copy-btn" title="Copy to clipboard" aria-label="Copy code"><span class="md-copy-icon">⧉</span><span class="md-copy-feedback">Copied!</span></button>
+<pre><code class="language-julia">using GeoDataFrames, ArchGDAL
+
+# Load state data
+states = GeoDataFrames.read(&quot;data/states.shp&quot;)
+
+# Create union for clipping
+state_boundary = create_state_union(states)</code></pre>
+</div>
+<p><strong>Notes</strong></p>
+<ul class="md-list-tight">
+<li><p>Progress is reported every 500 states processed</p>
+</li>
+<li><p>Errors during union operations are caught and reported as warnings</p>
+</li>
+<li><p>The function assumes geometries are in the same coordinate reference system</p>
+</li>
+<li><p>Returns an ArchGDAL geometry suitable for spatial clipping operations</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="md-docstring" id="JuliaMapping.create_voting_contours!-Tuple{Any, Any}">
+<div class="md-docstring-header">
+<h4 class="md-docstring-binding"><code>JuliaMapping.create_voting_contours!</code> — <span class="md-docstring-sig">Tuple{Any, Any}</span></h4>
+<a class="md-docstring-source" href="https://github.com/technocrat/JuliaMapping.jl/blob/6a3360c9e886bddc14ebd50c886fe5e96d7398e4/src/contours.jl#L49-L77" title="View source">source</a>
+</div>
+<div class="md-docstring-content">
+<div class="md-code-block">
+<button class="md-copy-btn" title="Copy to clipboard" aria-label="Copy code"><span class="md-copy-icon">⧉</span><span class="md-copy-feedback">Copied!</span></button>
+<pre><code class="language-julia">create_voting_contours!(ga, df; geometry_col=:geometry, value_col=:republican_pct, resolution=200, levels=10)</code></pre>
+</div>
+<p>Create smooth contour lines on an existing plot representing spatial interpolation of a value across geographic regions.</p>
+<p><strong>Arguments</strong></p>
+<ul class="md-list-tight">
+<li><p><code class="md-code-inline">ga</code>: An existing Makie plot axis/figure to add contours to</p>
+</li>
+<li><p><code class="md-code-inline">df</code>: DataFrame containing geometry and value columns for interpolation</p>
+</li>
+<li><p><code class="md-code-inline">geometry_col::Symbol=:geometry</code>: Column name containing ArchGDAL geometry objects (default: <code class="md-code-inline">:geometry</code>)</p>
+</li>
+<li><p><code class="md-code-inline">value_col::Symbol=:republican_pct</code>: Column name containing numeric values to interpolate (default: <code class="md-code-inline">:republican_pct</code>) Can also use <code class="md-code-inline">:democratic_pct</code>, <code class="md-code-inline">:third_party_pct</code>, or any numeric column</p>
+</li>
+<li><p><code class="md-code-inline">resolution::Int=200</code>: Grid resolution for interpolation (higher = smoother but slower)</p>
+</li>
+<li><p><code class="md-code-inline">levels::Int=10</code>: Number of contour levels to draw, or a vector of specific levels</p>
+</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul class="md-list-tight">
+<li><p>Tuple of (contour<em>lines, interpolated</em>grid<em>Z, x</em>grid, y_grid)</p>
+</li>
+</ul>
+<p><strong>Details</strong></p>
+<ul class="md-list-tight">
+<li><p>Uses Gaussian kernel density weighting for smooth interpolation</p>
+</li>
+<li><p>Adaptive bandwidth based on data extent for automatic smoothing</p>
+</li>
+<li><p>Contour lines are labeled with values</p>
+</li>
+<li><p>Designed for political/electoral data (margins, vote shares, etc.)</p>
+</li>
+</ul>
+<p><strong>Example</strong></p>
+<div class="md-code-block">
+<button class="md-copy-btn" title="Copy to clipboard" aria-label="Copy code"><span class="md-copy-icon">⧉</span><span class="md-copy-feedback">Copied!</span></button>
+<pre><code class="language-julia">fig, ax, plt = scatter(counties_df.longitude, counties_df.latitude)
+cs, Z, x_grid, y_grid = create_voting_contours!(ax, counties_df, value_col=:margin_pct)</code></pre>
+</div>
+</div>
+</div>
+<div class="md-docstring" id="JuliaMapping.detect_clustering-Tuple{DataFrames.DataFrame, Symbol}">
+<div class="md-docstring-header">
+<h4 class="md-docstring-binding"><code>JuliaMapping.detect_clustering</code> — <span class="md-docstring-sig">Tuple{DataFrames.DataFrame, Symbol}</span></h4>
+<a class="md-docstring-source" href="https://github.com/technocrat/JuliaMapping.jl/blob/6a3360c9e886bddc14ebd50c886fe5e96d7398e4/src/choose_bin.jl#L167-L206" title="View source">source</a>
+</div>
+<div class="md-docstring-content">
+<div class="md-code-block">
+<button class="md-copy-btn" title="Copy to clipboard" aria-label="Copy code"><span class="md-copy-icon">⧉</span><span class="md-copy-feedback">Copied!</span></button>
+<pre><code class="language-julia">detect_clustering(df::DataFrame, col::Symbol; n_bins::Int=5) -&gt; Vector{Int}</code></pre>
+</div>
+<p>Identify natural clusters and gaps in data to determine if Fisher-Jenks binning is appropriate.</p>
+<p>This function analyzes the distribution of gaps between consecutive sorted values to detect whether the data contains natural clusters. Large gaps suggest natural breakpoints that Fisher-Jenks optimization would identify effectively.</p>
+<p><strong>Arguments</strong></p>
+<ul class="md-list-tight">
+<li><p><code class="md-code-inline">df::DataFrame</code>: Input DataFrame containing the data</p>
+</li>
+<li><p><code class="md-code-inline">col::Symbol</code>: Column name to analyze</p>
+</li>
+<li><p><code class="md-code-inline">n_bins::Int=5</code>: Number of bins to create (used for recommendation threshold)</p>
+</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul class="md-list-tight">
+<li><p><code class="md-code-inline">Vector{Int}</code>: Indices of locations with large gaps (potential natural breaks)</p>
+</li>
+</ul>
+<p><strong>Interpretation</strong></p>
+<ul class="md-list-tight">
+<li><p>If number of large gaps ≥ <code class="md-code-inline">n_bins - 1</code>: Strong clustering detected → Use Fisher-Jenks</p>
+</li>
+<li><p>If fewer large gaps: Weak clustering → Quantiles may be simpler</p>
+</li>
+<li><p>Large gaps are defined as those exceeding mean + 1.5 × standard deviation</p>
+</li>
+</ul>
+<p><strong>Details</strong></p>
+<p>The function:</p>
+<ol class="md-list-tight">
+<li><p>Sorts data and calculates gaps between consecutive values</p>
+</li>
+<li><p>Identifies &quot;large&quot; gaps using statistical threshold</p>
+</li>
+<li><p>Produces a histogram of gap sizes</p>
+</li>
+<li><p>Recommends binning strategy based on clustering strength</p>
+</li>
+</ol>
+<p><strong>Example</strong></p>
+<div class="md-code-block">
+<button class="md-copy-btn" title="Copy to clipboard" aria-label="Copy code"><span class="md-copy-icon">⧉</span><span class="md-copy-feedback">Copied!</span></button>
+<pre><code class="language-julia">large_gaps = detect_clustering(counties, :margin_pct, n_bins=5)
+# Prints analysis and shows gap distribution histogram
+# Returns indices where natural breaks occur</code></pre>
+</div>
+<p><strong>See also</strong></p>
+<p><a href="./#JuliaMapping.compare_quantile_vs_jenks-Tuple{DataFrames.DataFrame, Symbol}"><code class="md-code-inline">compare_quantile_vs_jenks</code></a>, <a href="./#JuliaMapping.assess_uniform_distribution-Tuple{DataFrames.DataFrame, Symbol}"><code class="md-code-inline">assess_uniform_distribution</code></a></p>
+</div>
+</div>
+<div class="md-docstring" id="JuliaMapping.dms_to_decimal-Tuple{AbstractString}">
+<div class="md-docstring-header">
+<h4 class="md-docstring-binding"><code>JuliaMapping.dms_to_decimal</code> — <span class="md-docstring-sig">Tuple{AbstractString}</span></h4>
+<a class="md-docstring-source" href="https://github.com/technocrat/JuliaMapping.jl/blob/6a3360c9e886bddc14ebd50c886fe5e96d7398e4/src/dms_to_decimal.jl#L1-L32" title="View source">source</a>
+</div>
+<div class="md-docstring-content">
+<div class="md-code-block">
+<button class="md-copy-btn" title="Copy to clipboard" aria-label="Copy code"><span class="md-copy-icon">⧉</span><span class="md-copy-feedback">Copied!</span></button>
+<pre><code class="language-julia">dms_to_decimal(coords::AbstractString) -&gt; String</code></pre>
+</div>
+<p>Convert coordinates from degrees, minutes, seconds (DMS) format to decimal degrees (DD).</p>
+<p><strong>Arguments</strong></p>
+<ul class="md-list-tight">
+<li><p><code class="md-code-inline">coords::AbstractString</code>: Coordinates in DMS format with flexible symbols and direction indicators</p>
+</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul class="md-list-tight">
+<li><p><code class="md-code-inline">String</code>: Coordinates in decimal degrees format &quot;±DD.DDDD, ±DD.DDDD&quot;</p>
+</li>
+</ul>
+<p><strong>Format</strong></p>
+<p>Input format is flexible:</p>
+<ul class="md-list-tight">
+<li><p>Degrees, minutes, and seconds can use °/′/″ symbols or be plain numbers</p>
+</li>
+<li><p>Direction can be N/North/n/north, S/South/s/south, E/East/e/east, W/West/w/west</p>
+</li>
+<li><p>Direction can appear before or after the coordinate</p>
+</li>
+<li><p>Latitude and longitude separated by comma</p>
+</li>
+<li><p>Spaces between components are optional</p>
+</li>
+</ul>
+<p><strong>Example</strong></p>
+<div class="md-code-block">
+<button class="md-copy-btn" title="Copy to clipboard" aria-label="Copy code"><span class="md-copy-icon">⧉</span><span class="md-copy-feedback">Copied!</span></button>
+<pre><code class="language-julia"># Various formats work
+dms_to_decimal(&quot;42° 21′ 37″ N, 71° 03′ 28″ W&quot;)
+dms_to_decimal(&quot;42 21 37 N, 71 03 28 W&quot;)
+dms_to_decimal(&quot;North 42° 21′ 37″, West 71° 03′ 28″&quot;)
+dms_to_decimal(&quot;42° 21′ 37″ north, 71° 03′ 28″ west&quot;)
+dms_to_decimal(&quot;40° 26′ 46.302″ N, 79° 58′ 56.484″ W&quot;)</code></pre>
+</div>
+<p><strong>Throws</strong></p>
+<ul class="md-list-tight">
+<li><p><code class="md-code-inline">ArgumentError</code>: If input format is invalid or coordinates are out of range</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="md-docstring" id="JuliaMapping.dots-Tuple{DataFrames.DataFrame, Int64}">
+<div class="md-docstring-header">
+<h4 class="md-docstring-binding"><code>JuliaMapping.dots</code> — <span class="md-docstring-sig">Tuple{DataFrames.DataFrame, Int64}</span></h4>
+<a class="md-docstring-source" href="https://github.com/technocrat/JuliaMapping.jl/blob/6a3360c9e886bddc14ebd50c886fe5e96d7398e4/src/dots.jl#L1-L25" title="View source">source</a>
+</div>
+<div class="md-docstring-content">
+<div class="md-code-block">
+<button class="md-copy-btn" title="Copy to clipboard" aria-label="Copy code"><span class="md-copy-icon">⧉</span><span class="md-copy-feedback">Copied!</span></button>
+<pre><code class="language-julia">dots(df::DataFrame, dots::Int)</code></pre>
+</div>
+<p>Calculate dot density values for wheat production visualization.</p>
+<p><strong>Arguments</strong></p>
+<ul class="md-list-tight">
+<li><p><code class="md-code-inline">df::DataFrame</code>: DataFrame containing wheat production data with <code class="md-code-inline">wheat2017bu</code> column</p>
+</li>
+<li><p><code class="md-code-inline">dots::Int</code>: Number of bushels represented by each dot</p>
+</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul class="md-list-tight">
+<li><p><code class="md-code-inline">Vector{Int}</code>: Number of dots needed for each row based on production levels</p>
+</li>
+</ul>
+<p><strong>Examples</strong></p>
+<div class="md-code-block">
+<button class="md-copy-btn" title="Copy to clipboard" aria-label="Copy code"><span class="md-copy-icon">⧉</span><span class="md-copy-feedback">Copied!</span></button>
+<pre><code class="language-julia">wheat_df = DataFrame(wheat2017bu = [5000, 12000, 800])
+dot_counts = dots(wheat_df, 1000)  # Each dot represents 1000 bushels
+# Returns: [5, 12, 0] (dots per county)</code></pre>
+</div>
+<p><strong>Notes</strong></p>
+<ul class="md-list-tight">
+<li><p>Uses floor division to ensure whole dots only</p>
+</li>
+<li><p>Specifically designed for wheat production dot density maps</p>
+</li>
+<li><p>Part of the agricultural visualization workflow</p>
+</li>
+<li><p>Returns 0 for counties with production below the dot threshold</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="md-docstring" id="JuliaMapping.extract_centroid-Tuple{Any}">
+<div class="md-docstring-header">
+<h4 class="md-docstring-binding"><code>JuliaMapping.extract_centroid</code> — <span class="md-docstring-sig">Tuple{Any}</span></h4>
+<a class="md-docstring-source" href="https://github.com/technocrat/JuliaMapping.jl/blob/6a3360c9e886bddc14ebd50c886fe5e96d7398e4/src/extract_centroid.jl#L2-L17" title="View source">source</a>
+</div>
+<div class="md-docstring-content">
+<div class="md-code-block">
+<button class="md-copy-btn" title="Copy to clipboard" aria-label="Copy code"><span class="md-copy-icon">⧉</span><span class="md-copy-feedback">Copied!</span></button>
+<pre><code class="language-julia">extract_centroid(geometry)</code></pre>
+</div>
+<p>Extract the centroid coordinates from a geometry object.</p>
+<p><strong>Arguments</strong></p>
+<ul class="md-list-tight">
+<li><p><code class="md-code-inline">geometry</code>: An ArchGDAL geometry object</p>
+</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul class="md-list-tight">
+<li><p>A tuple <code class="md-code-inline">(y, x)</code> containing the latitude and longitude coordinates of the centroid</p>
+</li>
+</ul>
+<p><strong>Example</strong></p>
+<div class="md-code-block">
+<button class="md-copy-btn" title="Copy to clipboard" aria-label="Copy code"><span class="md-copy-icon">⧉</span><span class="md-copy-feedback">Copied!</span></button>
+<pre><code class="language-julia">centroid_x, centroid_y = extract_centroid(geom)</code></pre>
+</div>
+</div>
+</div>
+<div class="md-docstring" id="JuliaMapping.format_breaks-Tuple{Vector{String}}">
+<div class="md-docstring-header">
+<h4 class="md-docstring-binding"><code>JuliaMapping.format_breaks</code> — <span class="md-docstring-sig">Tuple{Vector{String}}</span></h4>
+<a class="md-docstring-source" href="https://github.com/technocrat/JuliaMapping.jl/blob/6a3360c9e886bddc14ebd50c886fe5e96d7398e4/src/format_breaks.jl#L1-L18" title="View source">source</a>
+</div>
+<div class="md-docstring-content">
+<div class="md-code-block">
+<button class="md-copy-btn" title="Copy to clipboard" aria-label="Copy code"><span class="md-copy-icon">⧉</span><span class="md-copy-feedback">Copied!</span></button>
+<pre><code class="language-julia">format_breaks(breaks::Vector{String}) -&gt; Vector{String}</code></pre>
+</div>
+<p>Formats a vector of string representations of ranges into a human-readable format.</p>
+<p><strong>Arguments</strong></p>
+<ul class="md-list-tight">
+<li><p><code class="md-code-inline">breaks::Vector{String}</code>: A vector of strings, each representing a numerical range.  Each string is expected to be in the format <code class="md-code-inline">&quot;start - end&quot;</code>, where <code class="md-code-inline">start</code> and <code class="md-code-inline">end</code> are numerical values.</p>
+</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul class="md-list-tight">
+<li><p>A <code class="md-code-inline">Vector{String}</code> where each element is a formatted range string in the form <code class="md-code-inline">&quot;start to end&quot;</code>.</p>
+<ul class="md-list-tight">
+<li><p>The numerical values in the range are rounded to the nearest integer and formatted with commas for better readability.</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>Example</strong></p>
+<p>julia&gt; breaks = [&quot;1000 - 2000&quot;, &quot;3000.5 - 4000.2&quot;, &quot;500000 - 1000000&quot;]; julia&gt; format_breaks(breaks) [&quot;1,000 to 2,000&quot;, &quot;3,001 to 4,000&quot;, &quot;500,000 to 1,000,000&quot;]</p>
+</div>
+</div>
+<div class="md-docstring" id="JuliaMapping.format_table_as_text">
+<div class="md-docstring-header">
+<h4 class="md-docstring-binding"><code>JuliaMapping.format_table_as_text</code> — <span class="md-docstring-sig">Union{Tuple{Vector{String}, Vector{Vector{String}}}, Tuple{Vector{String}, Vector{Vector{String}}, Int64}}</span></h4>
+<a class="md-docstring-source" href="https://github.com/technocrat/JuliaMapping.jl/blob/6a3360c9e886bddc14ebd50c886fe5e96d7398e4/src/format_table_as_text.jl#L1-L29" title="View source">source</a>
+</div>
+<div class="md-docstring-content">
+<div class="md-code-block">
+<button class="md-copy-btn" title="Copy to clipboard" aria-label="Copy code"><span class="md-copy-icon">⧉</span><span class="md-copy-feedback">Copied!</span></button>
+<pre><code class="language-julia">format_table_as_text(headers::Vector{String}, rows::Vector{Vector{String}}, padding::Int=2)</code></pre>
+</div>
+<p>Format data as an ASCII table with borders and proper column alignment.</p>
+<p><strong>Arguments</strong></p>
+<ul class="md-list-tight">
+<li><p><code class="md-code-inline">headers::Vector{String}</code>: Column header names</p>
+</li>
+<li><p><code class="md-code-inline">rows::Vector{Vector{String}}</code>: Data rows, where each row is a vector of strings</p>
+</li>
+<li><p><code class="md-code-inline">padding::Int=2</code>: Additional padding space around each cell (default: 2)</p>
+</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul class="md-list-tight">
+<li><p><code class="md-code-inline">String</code>: Formatted ASCII table with Unicode box-drawing characters</p>
+</li>
+</ul>
+<p><strong>Examples</strong></p>
+<div class="md-code-block">
+<button class="md-copy-btn" title="Copy to clipboard" aria-label="Copy code"><span class="md-copy-icon">⧉</span><span class="md-copy-feedback">Copied!</span></button>
+<pre><code class="language-julia">headers = [&quot;Name&quot;, &quot;Age&quot;, &quot;City&quot;]
+rows = [[&quot;Alice&quot;, &quot;25&quot;, &quot;New York&quot;], 
+        [&quot;Bob&quot;, &quot;30&quot;, &quot;Chicago&quot;],
+        [&quot;Carol&quot;, &quot;22&quot;, &quot;Boston&quot;]]
+table = format_table_as_text(headers, rows)
+# Returns a formatted table with borders and proper alignment</code></pre>
+</div>
+<p><strong>Notes</strong></p>
+<ul class="md-list-tight">
+<li><p>Uses Unicode box-drawing characters (┌─┬─┐│├─┼─┤└─┴─┘)</p>
+</li>
+<li><p>Automatically calculates column widths based on content</p>
+</li>
+<li><p>Each cell is padded for consistent spacing</p>
+</li>
+<li><p>Useful for creating publication-ready ASCII tables</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="md-docstring" id="JuliaMapping.get_gdp-Tuple{DataFrames.DataFrame, Int64}">
+<div class="md-docstring-header">
+<h4 class="md-docstring-binding"><code>JuliaMapping.get_gdp</code> — <span class="md-docstring-sig">Tuple{DataFrames.DataFrame, Int64}</span></h4>
+<a class="md-docstring-source" href="https://github.com/technocrat/JuliaMapping.jl/blob/6a3360c9e886bddc14ebd50c886fe5e96d7398e4/src/get_gdp.jl#L2-L35" title="View source">source</a>
+</div>
+<div class="md-docstring-content">
+<div class="md-code-block">
+<button class="md-copy-btn" title="Copy to clipboard" aria-label="Copy code"><span class="md-copy-icon">⧉</span><span class="md-copy-feedback">Copied!</span></button>
+<pre><code class="language-julia">get_gdp(df::DataFrame, quarter::Int) -&gt; DataFrame</code></pre>
+</div>
+<p>Process a GDP dataset to extract state-level GDP data for a specified quarter.</p>
+<p>This function cleans and processes a raw GDP DataFrame by:</p>
+<ul class="md-list-tight">
+<li><p>Selecting the state names column and the specified quarter column</p>
+</li>
+<li><p>Removing header and footer rows that contain explanatory text</p>
+</li>
+<li><p>Converting GDP values from strings to integers (removing commas)</p>
+</li>
+<li><p>Filtering to include only valid US states</p>
+</li>
+<li><p>Sorting the results by state name</p>
+</li>
+</ul>
+<p><strong>Arguments</strong></p>
+<ul class="md-list-tight">
+<li><p><code class="md-code-inline">df::DataFrame</code>: Raw GDP data with state names in column 1 and quarterly data in subsequent columns</p>
+</li>
+<li><p><code class="md-code-inline">quarter::Int</code>: Column index representing the desired quarter (e.g., 2 for Q1, 3 for Q2, etc.)</p>
+</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul class="md-list-tight">
+<li><p><code class="md-code-inline">DataFrame</code>: Cleaned dataset with columns <code class="md-code-inline">:state</code> and <code class="md-code-inline">:gdp</code>, sorted by state name</p>
+</li>
+</ul>
+<p><strong>Notes</strong></p>
+<ul class="md-list-tight">
+<li><p>Assumes data starts at row 6 and state data ends 5 rows before the DataFrame end</p>
+</li>
+<li><p>Requires a global variable <code class="md-code-inline">states</code> containing valid state names for filtering</p>
+</li>
+<li><p>GDP values are converted to integers after removing comma separators</p>
+</li>
+<li><p>First set of quarters are in current dollars, second set are in constant dollars.</p>
+</li>
+<li><p>Which to use depends on the context of the analysis.</p>
+</li>
+<li><p>This approach is suitable for official data and other series that have very</p>
+</li>
+<li><p>consistent formatting from period to period. Otherwise, we would not be able to</p>
+</li>
+<li><p>hard code the rows to trim.</p>
+</li>
+</ul>
+<p><strong>Example</strong></p>
+<div class="md-code-block">
+<button class="md-copy-btn" title="Copy to clipboard" aria-label="Copy code"><span class="md-copy-icon">⧉</span><span class="md-copy-feedback">Copied!</span></button>
+<pre><code class="language-julia">cleaned_data = get_gdp(raw_gdp_df, 14)  # Extract Q4 data (assuming column 14 contains Q4)</code></pre>
+</div>
+</div>
+</div>
+<div class="md-docstring" id="JuliaMapping.get_nth_table">
+<div class="md-docstring-header">
+<h4 class="md-docstring-binding"><code>JuliaMapping.get_nth_table</code> — <span class="md-docstring-sig">Union{Tuple{String}, Tuple{String, Int64}}</span></h4>
+<a class="md-docstring-source" href="https://github.com/technocrat/JuliaMapping.jl/blob/6a3360c9e886bddc14ebd50c886fe5e96d7398e4/src/get_nth_table.jl#L2-L38" title="View source">source</a>
+</div>
+<div class="md-docstring-content">
+<div class="md-code-block">
+<button class="md-copy-btn" title="Copy to clipboard" aria-label="Copy code"><span class="md-copy-icon">⧉</span><span class="md-copy-feedback">Copied!</span></button>
+<pre><code class="language-julia">get_nth_table(url::String, n::Int=1) -&gt; DataFrame</code></pre>
+</div>
+<p>Get the nth HTML table from a webpage and return as a DataFrame.</p>
+<p><strong>Arguments</strong></p>
+<ul class="md-list-tight">
+<li><p><code class="md-code-inline">url::String</code>: The URL of the webpage to scrape</p>
+</li>
+<li><p><code class="md-code-inline">n::Int=1</code>: The table index to get (1-based indexing). Defaults to 1 for the first table.</p>
+</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul class="md-list-tight">
+<li><p><code class="md-code-inline">DataFrame</code>: The fetched table with cleaned text content</p>
+</li>
+</ul>
+<p><strong>Throws</strong></p>
+<ul class="md-list-tight">
+<li><p><code class="md-code-inline">HTTP.ExceptionRequest.StatusError</code>: If the webpage cannot be accessed</p>
+</li>
+<li><p><code class="md-code-inline">ArgumentError</code>: If no tables are found on the page</p>
+</li>
+<li><p><code class="md-code-inline">BoundsError</code>: If the requested table index <code class="md-code-inline">n</code> exceeds the number of tables found</p>
+</li>
+</ul>
+<p><strong>Examples</strong></p>
+<div class="md-code-block">
+<button class="md-copy-btn" title="Copy to clipboard" aria-label="Copy code"><span class="md-copy-icon">⧉</span><span class="md-copy-feedback">Copied!</span></button>
+<pre><code class="language-julia"># Get first table from Wikipedia or other web page
+url = &quot;https://en.wikipedia.org/wiki/List_of_European_countries_by_area&quot;
+df = get_nth_table(url)
+
+# Get second table
+df2 = get_nth_table(url, 2)
+
+# Save to CSV
+using CSV
+CSV.write(&quot;table_data.csv&quot;, df)</code></pre>
+</div>
+<p><strong>Notes</strong></p>
+<ul class="md-list-tight">
+<li><p>Headers are automatically detected from <code class="md-code-inline">&lt;th&gt;</code> elements</p>
+</li>
+<li><p>Cell text is cleaned by removing extra whitespace and newlines</p>
+</li>
+<li><p>If rows have different numbers of columns, they are padded or truncated to match headers</p>
+</li>
+<li><p>Generic column names are created if no headers are found</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="md-docstring" id="JuliaMapping.get_sheet-Tuple{String, Int64}">
+<div class="md-docstring-header">
+<h4 class="md-docstring-binding"><code>JuliaMapping.get_sheet</code> — <span class="md-docstring-sig">Tuple{String, Int64}</span></h4>
+<a class="md-docstring-source" href="https://github.com/technocrat/JuliaMapping.jl/blob/6a3360c9e886bddc14ebd50c886fe5e96d7398e4/src/get_sheet.jl#L2-L22" title="View source">source</a>
+</div>
+<div class="md-docstring-content">
+<div class="md-code-block">
+<button class="md-copy-btn" title="Copy to clipboard" aria-label="Copy code"><span class="md-copy-icon">⧉</span><span class="md-copy-feedback">Copied!</span></button>
+<pre><code class="language-julia">get_sheet(file_name::String, sheet::Int) -&gt; DataFrame</code></pre>
+</div>
+<p>Read a specific sheet from an Excel file and return it as a DataFrame.</p>
+<p><strong>Arguments</strong></p>
+<ul class="md-list-tight">
+<li><p><code class="md-code-inline">file_name::String</code>: Path to the Excel file (.xlsx format)</p>
+</li>
+<li><p><code class="md-code-inline">sheet::Int</code>: Sheet number to read (1-indexed)</p>
+</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul class="md-list-tight">
+<li><p><code class="md-code-inline">DataFrame</code>: The Excel sheet data converted to a DataFrame</p>
+</li>
+</ul>
+<p><strong>Examples</strong></p>
+<div class="md-code-block">
+<button class="md-copy-btn" title="Copy to clipboard" aria-label="Copy code"><span class="md-copy-icon">⧉</span><span class="md-copy-feedback">Copied!</span></button>
+<pre><code class="language-julia"># Read the first sheet from an Excel file
+df = get_sheet(&quot;data.xlsx&quot;, 1)
+
+# Read the third sheet
+df = get_sheet(&quot;sales_report.xlsx&quot;, 3)</code></pre>
+</div>
+</div>
+</div>
+<div class="md-docstring" id="JuliaMapping.hard_wrap-Tuple{String, Int64}">
+<div class="md-docstring-header">
+<h4 class="md-docstring-binding"><code>JuliaMapping.hard_wrap</code> — <span class="md-docstring-sig">Tuple{String, Int64}</span></h4>
+<a class="md-docstring-source" href="https://github.com/technocrat/JuliaMapping.jl/blob/6a3360c9e886bddc14ebd50c886fe5e96d7398e4/src/hard_wrap.jl#L2-L27" title="View source">source</a>
+</div>
+<div class="md-docstring-content">
+<div class="md-code-block">
+<button class="md-copy-btn" title="Copy to clipboard" aria-label="Copy code"><span class="md-copy-icon">⧉</span><span class="md-copy-feedback">Copied!</span></button>
+<pre><code class="language-julia">hard_wrap(text::String, width::Int)</code></pre>
+</div>
+<p>Hard-wrap text at the specified width, breaking at word boundaries when possible. Each line is right-padded to the specified width.</p>
+<p><strong>Arguments</strong></p>
+<ul class="md-list-tight">
+<li><p><code class="md-code-inline">text::String</code>: The text to wrap</p>
+</li>
+<li><p><code class="md-code-inline">width::Int</code>: Maximum line width in characters</p>
+</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul class="md-list-tight">
+<li><p><code class="md-code-inline">String</code>: Text with line breaks inserted and each line padded to width</p>
+</li>
+</ul>
+<p><strong>Examples</strong></p>
+<div class="md-code-block">
+<button class="md-copy-btn" title="Copy to clipboard" aria-label="Copy code"><span class="md-copy-icon">⧉</span><span class="md-copy-feedback">Copied!</span></button>
+<pre><code class="language-julia">text = &quot;This is a long sentence that will be wrapped at word boundaries.&quot;
+wrapped = hard_wrap(text, 20)
+# Returns text wrapped to 20 characters per line with padding</code></pre>
+</div>
+<p><strong>Notes</strong></p>
+<ul class="md-list-tight">
+<li><p>Right-pads each line to exactly the specified width</p>
+</li>
+<li><p>Attempts to break at word boundaries when possible</p>
+</li>
+<li><p>If a word is longer than the width, it will be broken mid-word</p>
+</li>
+<li><p>Useful for creating fixed-width text layouts</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="md-docstring" id="JuliaMapping.haversine_distance_km-NTuple{4, Float64}">
+<div class="md-docstring-header">
+<h4 class="md-docstring-binding"><code>JuliaMapping.haversine_distance_km</code> — <span class="md-docstring-sig">NTuple{4, Float64}</span></h4>
+<a class="md-docstring-source" href="https://github.com/technocrat/JuliaMapping.jl/blob/6a3360c9e886bddc14ebd50c886fe5e96d7398e4/src/haversine_distance_km.jl#L1-L5" title="View source">source</a>
+</div>
+<div class="md-docstring-content">
+<div class="md-code-block">
+<button class="md-copy-btn" title="Copy to clipboard" aria-label="Copy code"><span class="md-copy-icon">⧉</span><span class="md-copy-feedback">Copied!</span></button>
+<pre><code class="language-julia">haversine_distance_km(lon1, lat1, lon2, lat2)</code></pre>
+</div>
+<p>Calculate geodesic distance between two points using the Haversine formula.</p>
+</div>
+</div>
+<div class="md-docstring" id="JuliaMapping.inspect_shp-Tuple{String}">
+<div class="md-docstring-header">
+<h4 class="md-docstring-binding"><code>JuliaMapping.inspect_shp</code> — <span class="md-docstring-sig">Tuple{String}</span></h4>
+<a class="md-docstring-source" href="https://github.com/technocrat/JuliaMapping.jl/blob/6a3360c9e886bddc14ebd50c886fe5e96d7398e4/src/inspect_shp.jl#L1-L26" title="View source">source</a>
+</div>
+<div class="md-docstring-content">
+<div class="md-code-block">
+<button class="md-copy-btn" title="Copy to clipboard" aria-label="Copy code"><span class="md-copy-icon">⧉</span><span class="md-copy-feedback">Copied!</span></button>
+<pre><code class="language-julia">inspect_shp(path::String)</code></pre>
+</div>
+<p>Prints the structure and field names of a shapefile for inspection.</p>
+<p><strong>Arguments</strong></p>
+<ul class="md-list-tight">
+<li><p><code class="md-code-inline">path::String</code>: Path to the shapefile (.shp file)</p>
+</li>
+</ul>
+<p><strong>Details</strong></p>
+<p>This function reads a shapefile and prints:</p>
+<ul class="md-list-tight">
+<li><p>Layer name</p>
+</li>
+<li><p>Feature count (number of records)</p>
+</li>
+<li><p>All field/column names available in the shapefile</p>
+</li>
+</ul>
+<p><strong>Example</strong></p>
+<div class="md-code-block">
+<button class="md-copy-btn" title="Copy to clipboard" aria-label="Copy code"><span class="md-copy-icon">⧉</span><span class="md-copy-feedback">Copied!</span></button>
+<pre><code class="language-julia">inspect_shp(&quot;/path/to/data.shp&quot;)
+# Output:
+# Layer name: data
+# Feature count: 1234
+# Fields:
+#  - ID
+#  - NAME
+#  - geometry</code></pre>
+</div>
+</div>
+</div>
+<div class="md-docstring" id="JuliaMapping.is_font_available-Tuple{Any}">
+<div class="md-docstring-header">
+<h4 class="md-docstring-binding"><code>JuliaMapping.is_font_available</code> — <span class="md-docstring-sig">Tuple{Any}</span></h4>
+<a class="md-docstring-source" href="https://github.com/technocrat/JuliaMapping.jl/blob/6a3360c9e886bddc14ebd50c886fe5e96d7398e4/src/is_font_available.jl#L1-L20" title="View source">source</a>
+</div>
+<div class="md-docstring-content">
+<div class="md-code-block">
+<button class="md-copy-btn" title="Copy to clipboard" aria-label="Copy code"><span class="md-copy-icon">⧉</span><span class="md-copy-feedback">Copied!</span></button>
+<pre><code class="language-julia">is_font_available(font_name::AbstractString) -&gt; Bool</code></pre>
+</div>
+<p>Return <code class="md-code-inline">true</code> if a font with the given name can be located by <code class="md-code-inline">FreeTypeAbstraction.findfont</code>, and <code class="md-code-inline">false</code> otherwise.</p>
+<p>This function attempts to resolve <code class="md-code-inline">font_name</code> to an installed font using FreeTypeAbstraction’s font-discovery mechanism. If the font is found, <code class="md-code-inline">true</code> is returned. If <code class="md-code-inline">findfont</code> throws an exception—such as when the font is missing or not registered on the system—the function catches the error and returns <code class="md-code-inline">false</code>.</p>
+<p><strong>Examples</strong></p>
+<p>```julia julia&gt; is<em>font</em>available(&quot;Helvetica&quot;) true</p>
+<p>julia&gt; is<em>font</em>available(&quot;NonexistentFontXYZ&quot;) false</p>
+</div>
+</div>
+<div class="md-docstring" id="JuliaMapping.log_dist-Tuple{DataFrames.DataFrame, Symbol}">
+<div class="md-docstring-header">
+<h4 class="md-docstring-binding"><code>JuliaMapping.log_dist</code> — <span class="md-docstring-sig">Tuple{DataFrames.DataFrame, Symbol}</span></h4>
+<a class="md-docstring-source" href="https://github.com/technocrat/JuliaMapping.jl/blob/6a3360c9e886bddc14ebd50c886fe5e96d7398e4/src/hist_dist.jl#L2-L25" title="View source">source</a>
+</div>
+<div class="md-docstring-content">
+<div class="md-code-block">
+<button class="md-copy-btn" title="Copy to clipboard" aria-label="Copy code"><span class="md-copy-icon">⧉</span><span class="md-copy-feedback">Copied!</span></button>
+<pre><code class="language-julia">log_dist(df::DataFrame, col::Symbol)</code></pre>
+</div>
+<p>Plot the log₁₀-transformed distribution of a numeric column with both histogram and kernel density overlay.</p>
+<p><strong>Arguments</strong></p>
+<ul class="md-list-tight">
+<li><p><code class="md-code-inline">df::DataFrame</code>: Input DataFrame containing the numeric column.</p>
+</li>
+<li><p><code class="md-code-inline">col::Symbol</code>: Column name to visualize.</p>
+</li>
+</ul>
+<p><strong>Details</strong></p>
+<p>The function computes <code class="md-code-inline">log10(x + 1)</code> for all nonmissing values in <code class="md-code-inline">df[!, col]</code>, then draws:</p>
+<ul class="md-list-tight">
+<li><p>A normalized histogram (PDF scaling).</p>
+</li>
+<li><p>A smooth kernel density estimate overlay.</p>
+</li>
+</ul>
+<p><strong>Returns</strong></p>
+<p>Displays an <code class="md-code-inline">AlgebraOfGraphics</code> plot showing the log-transformed distribution.</p>
+<p><strong>Example</strong></p>
+<div class="md-code-block">
+<button class="md-copy-btn" title="Copy to clipboard" aria-label="Copy code"><span class="md-copy-icon">⧉</span><span class="md-copy-feedback">Copied!</span></button>
+<pre><code class="language-julia">log_dist(df, :population)</code></pre>
+</div>
+</div>
+</div>
+<div class="md-docstring" id="JuliaMapping.make_combined_table">
+<div class="md-docstring-header">
+<h4 class="md-docstring-binding"><code>JuliaMapping.make_combined_table</code> — <span class="md-docstring-sig">Union{Tuple{DataFrames.DataFrame, String}, Tuple{DataFrames.DataFrame, String, Vector{String}}}</span></h4>
+<a class="md-docstring-source" href="https://github.com/technocrat/JuliaMapping.jl/blob/6a3360c9e886bddc14ebd50c886fe5e96d7398e4/src/small_multiples.jl#L2-L39" title="View source">source</a>
+</div>
+<div class="md-docstring-content">
+<div class="md-code-block">
+<button class="md-copy-btn" title="Copy to clipboard" aria-label="Copy code"><span class="md-copy-icon">⧉</span><span class="md-copy-feedback">Copied!</span></button>
+<pre><code class="language-julia">make_combined_table(data::DataFrame, half::String, formatted_breaks::Vector{String} = formatted_breaks)</code></pre>
+</div>
+<p>Create a formatted summary table of population statistics by bins.</p>
+<p>Generates a text-based table showing population totals, percentages, and cumulative statistics for either the first or second half of population bins. Useful for creating small multiple displays with separate tables for each half.</p>
+<p><strong>Arguments</strong></p>
+<ul class="md-list-tight">
+<li><p><code class="md-code-inline">data::DataFrame</code>: DataFrame containing <code class="md-code-inline">:bin</code> and <code class="md-code-inline">:population</code> columns</p>
+</li>
+<li><p><code class="md-code-inline">half::String</code>: Either &quot;first&quot; (bins 1-4) or &quot;second&quot; (bins 5-8)</p>
+</li>
+<li><p><code class="md-code-inline">formatted_breaks::Vector{String}</code>: Vector of formatted range labels (default: <code class="md-code-inline">formatted_breaks</code>)</p>
+</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul class="md-list-tight">
+<li><p>String containing a formatted text table with columns:</p>
+<ul class="md-list-tight">
+<li><p>Interval: The population range</p>
+</li>
+<li><p>Population: Total population in the bin</p>
+</li>
+<li><p>Percent: Percentage of national total</p>
+</li>
+<li><p>Cumulative: Cumulative population</p>
+</li>
+<li><p>Cumulative: Cumulative percentage</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>Details</strong></p>
+<ul class="md-list-tight">
+<li><p>Groups data by bin and sums population</p>
+</li>
+<li><p>Calculates percentages relative to national total</p>
+</li>
+<li><p>Computes cumulative population and percentages</p>
+</li>
+<li><p>Formats numbers with commas for readability</p>
+</li>
+<li><p>Uses PrettyTables with right-aligned columns</p>
+</li>
+</ul>
+<p><strong>Example</strong></p>
+<div class="md-code-block">
+<button class="md-copy-btn" title="Copy to clipboard" aria-label="Copy code"><span class="md-copy-icon">⧉</span><span class="md-copy-feedback">Copied!</span></button>
+<pre><code class="language-julia">table_text = make_combined_table(county_data, &quot;first&quot;, formatted_breaks)
+println(table_text)</code></pre>
+</div>
+<p><strong>Notes</strong></p>
+<p>The table is formatted as a string suitable for display or saving to file.</p>
+</div>
+</div>
+<div class="md-docstring" id="JuliaMapping.make_geographic_circle">
+<div class="md-docstring-header">
+<h4 class="md-docstring-binding"><code>JuliaMapping.make_geographic_circle</code> — <span class="md-docstring-sig">Union{Tuple{Any, Any}, Tuple{Any, Any, Any}}</span></h4>
+<a class="md-docstring-source" href="https://github.com/technocrat/JuliaMapping.jl/blob/6a3360c9e886bddc14ebd50c886fe5e96d7398e4/src/make_geographic_circle.jl#L1-L29" title="View source">source</a>
+</div>
+<div class="md-docstring-content">
+<div class="md-code-block">
+<button class="md-copy-btn" title="Copy to clipboard" aria-label="Copy code"><span class="md-copy-icon">⧉</span><span class="md-copy-feedback">Copied!</span></button>
+<pre><code class="language-julia">make_geographic_circle(center_geo, radius_deg, n_pts=64)</code></pre>
+</div>
+<p>Create a circular polygon in geographic coordinates (longitude/latitude in degrees).</p>
+<p><strong>Arguments</strong></p>
+<ul class="md-list-tight">
+<li><p><code class="md-code-inline">center_geo</code>: Tuple or vector containing (longitude, latitude) of the circle center in degrees</p>
+</li>
+<li><p><code class="md-code-inline">radius_deg</code>: Radius of the circle in degrees</p>
+</li>
+<li><p><code class="md-code-inline">n_pts</code>: Number of points to approximate the circle (default: 64)</p>
+</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul class="md-list-tight">
+<li><p>Vector of <code class="md-code-inline">Point2f</code> objects representing the circle vertices</p>
+</li>
+</ul>
+<p><strong>Details</strong></p>
+<p>This function creates a circular polygon by generating points around the center at regular angular intervals.  The function accounts for latitude distortion by dividing the longitude offset by the cosine of the latitude, ensuring the circle appears approximately circular on a map projection.</p>
+<p><strong>Example</strong></p>
+<div class="md-code-block">
+<button class="md-copy-btn" title="Copy to clipboard" aria-label="Copy code"><span class="md-copy-icon">⧉</span><span class="md-copy-feedback">Copied!</span></button>
+<pre><code class="language-julia"># Create a circle centered at (0°N, 0°E) with 1-degree radius
+circle_points = make_geographic_circle((0.0, 0.0), 1.0, 32)</code></pre>
+</div>
+<p><strong>Notes</strong></p>
+<ul class="md-list-tight">
+<li><p>The circle is created in geographic coordinates (WGS84, EPSG:4326)</p>
+</li>
+<li><p>Latitude distortion correction is applied to maintain circular appearance</p>
+</li>
+<li><p>Enter π and θ symbols in the REPL with \piTAB and \thetaTAB</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="md-docstring" id="JuliaMapping.make_marker-Tuple{Int64, Real, String}">
+<div class="md-docstring-header">
+<h4 class="md-docstring-binding"><code>JuliaMapping.make_marker</code> — <span class="md-docstring-sig">Tuple{Int64, Real, String}</span></h4>
+<a class="md-docstring-source" href="https://github.com/technocrat/JuliaMapping.jl/blob/6a3360c9e886bddc14ebd50c886fe5e96d7398e4/src/make_marker.jl#L3-L55" title="View source">source</a>
+</div>
+<div class="md-docstring-content">
+<div class="md-code-block">
+<button class="md-copy-btn" title="Copy to clipboard" aria-label="Copy code"><span class="md-copy-icon">⧉</span><span class="md-copy-feedback">Copied!</span></button>
+<pre><code class="language-julia">make_marker(n::Int, size::Real, shape::String) -&gt; BezierPath</code></pre>
+</div>
+<p>Create a custom marker composed of multiple geometric shapes arranged in a grid pattern for Makie plots.</p>
+<p><strong>Arguments</strong></p>
+<ul class="md-list-tight">
+<li><p><code class="md-code-inline">n::Int</code>: Number of shapes to include in the marker (arranged in a grid)</p>
+</li>
+<li><p><code class="md-code-inline">size::Real</code>: Size of each individual shape in the marker</p>
+</li>
+<li><p><code class="md-code-inline">shape::String</code>: Type of shape to draw. Supported values:</p>
+<ul class="md-list-tight">
+<li><p><code class="md-code-inline">&quot;+&quot;</code>: Plus sign (cross with horizontal and vertical bars)</p>
+</li>
+<li><p><code class="md-code-inline">&quot;_&quot;</code>: Underscore (horizontal bar)</p>
+</li>
+<li><p><code class="md-code-inline">&quot;±&quot;</code>: Plus-minus sign (horizontal bars with vertical bar on top)</p>
+</li>
+<li><p><code class="md-code-inline">&quot;#&quot;</code>: Hash sign (two horizontal and two vertical bars forming a grid)</p>
+</li>
+<li><p><code class="md-code-inline">&quot;*&quot;</code>: Asterisk (plus with two diagonal bars)</p>
+</li>
+<li><p><code class="md-code-inline">&quot;=&quot;</code>: Equal sign (two horizontal bars)</p>
+</li>
+<li><p><code class="md-code-inline">&quot;|&quot;</code>: Vertical bar</p>
+</li>
+<li><p><code class="md-code-inline">&quot;:&quot;</code>: Colon (two dots vertically aligned)</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul class="md-list-tight">
+<li><p><code class="md-code-inline">BezierPath</code>: A Makie BezierPath object containing all shapes arranged in a grid</p>
+</li>
+</ul>
+<p><strong>Details</strong></p>
+<p>The shapes are arranged in a square grid pattern with automatic spacing. The grid size is calculated as <code class="md-code-inline">ceil(sqrt(n))</code> to accommodate all <code class="md-code-inline">n</code> shapes. Line thickness is set to 20% of the specified size, and spacing between shapes is 3× the size parameter.</p>
+<p><strong>Examples</strong></p>
+<div class="md-code-block">
+<button class="md-copy-btn" title="Copy to clipboard" aria-label="Copy code"><span class="md-copy-icon">⧉</span><span class="md-copy-feedback">Copied!</span></button>
+<pre><code class="language-julia">using Makie, CairoMakie
+
+# Create a marker with 4 plus signs
+marker = make_marker(4, 10.0, &quot;+&quot;)
+
+# Use in a scatter plot
+fig = Figure()
+ax = Axis(fig[1, 1])
+scatter!(ax, [1, 2, 3], [1, 2, 3], marker=marker, markersize=30)
+fig
+
+# Create markers with different shapes
+plus_marker = make_marker(9, 5.0, &quot;+&quot;)
+underscore_marker = make_marker(6, 5.0, &quot;_&quot;)
+plusminus_marker = make_marker(4, 5.0, &quot;±&quot;)
+hash_marker = make_marker(4, 5.0, &quot;#&quot;)
+asterisk_marker = make_marker(9, 5.0, &quot;*&quot;)
+equal_marker = make_marker(6, 5.0, &quot;=&quot;)
+pipe_marker = make_marker(4, 5.0, &quot;|&quot;)
+colon_marker = make_marker(6, 5.0, &quot;:&quot;)</code></pre>
+</div>
+<p><strong>Throws</strong></p>
+<ul class="md-list-tight">
+<li><p><code class="md-code-inline">error</code>: If <code class="md-code-inline">shape</code> is not one of the supported values (&quot;+&quot;, &quot;_&quot;, &quot;±&quot;, &quot;#&quot;, &quot;*&quot;, &quot;=&quot;, &quot;|&quot;, &quot;:&quot;)</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="md-docstring" id="JuliaMapping.percent-Tuple{Float64}">
+<div class="md-docstring-header">
+<h4 class="md-docstring-binding"><code>JuliaMapping.percent</code> — <span class="md-docstring-sig">Tuple{Float64}</span></h4>
+<a class="md-docstring-source" href="https://github.com/technocrat/JuliaMapping.jl/blob/6a3360c9e886bddc14ebd50c886fe5e96d7398e4/src/percent.jl#L1-L25" title="View source">source</a>
+</div>
+<div class="md-docstring-content">
+<div class="md-code-block">
+<button class="md-copy-btn" title="Copy to clipboard" aria-label="Copy code"><span class="md-copy-icon">⧉</span><span class="md-copy-feedback">Copied!</span></button>
+<pre><code class="language-julia">percent(x::Float64)</code></pre>
+</div>
+<p>Convert a decimal value to a percentage string with two decimal places.</p>
+<p>Takes a decimal value (e.g., 0.5) and converts it to a formatted percentage string (e.g., &quot;50.0%&quot;).</p>
+<p><strong>Arguments</strong></p>
+<ul class="md-list-tight">
+<li><p><code class="md-code-inline">x::Float64</code>: A decimal value (typically between 0.0 and 1.0)</p>
+</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul class="md-list-tight">
+<li><p>A string representation of the percentage with two decimal places and a &quot;%&quot; suffix</p>
+</li>
+</ul>
+<p><strong>Example</strong></p>
+<div class="md-code-block">
+<button class="md-copy-btn" title="Copy to clipboard" aria-label="Copy code"><span class="md-copy-icon">⧉</span><span class="md-copy-feedback">Copied!</span></button>
+<pre><code class="language-julia">percent(0.5)        # Returns &quot;50.0%&quot;
+percent(0.7532)     # Returns &quot;75.32%&quot;
+percent(0.123456)   # Returns &quot;12.35%&quot;
+percent(1.0)        # Returns &quot;100.0%&quot;</code></pre>
+</div>
+<p><strong>Notes</strong></p>
+<ul class="md-list-tight">
+<li><p>Values are multiplied by 100 and rounded to 2 decimal places</p>
+</li>
+<li><p>Works with any Float64 value, not just those between 0 and 1</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="md-docstring" id="JuliaMapping.pick_random_subset-Tuple{Any, Any}">
+<div class="md-docstring-header">
+<h4 class="md-docstring-binding"><code>JuliaMapping.pick_random_subset</code> — <span class="md-docstring-sig">Tuple{Any, Any}</span></h4>
+<a class="md-docstring-source" href="https://github.com/technocrat/JuliaMapping.jl/blob/6a3360c9e886bddc14ebd50c886fe5e96d7398e4/src/snow.jl#L83-L115" title="View source">source</a>
+</div>
+<div class="md-docstring-content">
+<div class="md-code-block">
+<button class="md-copy-btn" title="Copy to clipboard" aria-label="Copy code"><span class="md-copy-icon">⧉</span><span class="md-copy-feedback">Copied!</span></button>
+<pre><code class="language-julia">pick_random_subset(data, target_sum; rng=Random.default_rng())</code></pre>
+</div>
+<p>Select a random subset of rows from a DataFrame where a count column sums to a target value.</p>
+<p>Convenience wrapper around <code class="md-code-inline">uniform_subset_sum_indices</code> that works directly with DataFrames containing a <code class="md-code-inline">:Count</code> column.</p>
+<p><strong>Arguments</strong></p>
+<ul class="md-list-tight">
+<li><p><code class="md-code-inline">data</code>: DataFrame with a <code class="md-code-inline">:Count</code> column containing integer values</p>
+</li>
+<li><p><code class="md-code-inline">target_sum</code>: The desired sum of the <code class="md-code-inline">:Count</code> column</p>
+</li>
+<li><p><code class="md-code-inline">rng</code>: Random number generator (default: <code class="md-code-inline">Random.default_rng()</code>)</p>
+</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul class="md-list-tight">
+<li><p>A subset of the input DataFrame (rows whose <code class="md-code-inline">:Count</code> values sum to <code class="md-code-inline">target_sum</code>)</p>
+</li>
+<li><p>Returns empty DataFrame if no valid subset exists</p>
+</li>
+</ul>
+<p><strong>Example</strong></p>
+<div class="md-code-block">
+<button class="md-copy-btn" title="Copy to clipboard" aria-label="Copy code"><span class="md-copy-icon">⧉</span><span class="md-copy-feedback">Copied!</span></button>
+<pre><code class="language-julia">using DataFrames
+deaths = DataFrame(
+    location = [&quot;A&quot;, &quot;B&quot;, &quot;C&quot;, &quot;D&quot;, &quot;E&quot;],
+    Count = [5, 10, 15, 20, 25]
+)
+subset = pick_random_subset(deaths, 40)
+# Returns rows that sum to exactly 40 deaths, e.g., rows with counts [5, 15, 20]</code></pre>
+</div>
+<p><strong>Notes</strong></p>
+<ul class="md-list-tight">
+<li><p>Assumes the DataFrame has a <code class="md-code-inline">:Count</code> column</p>
+</li>
+<li><p>Each valid subset has equal probability of selection</p>
+</li>
+<li><p>Useful for bootstrap sampling with exact sample size constraints</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="md-docstring" id="JuliaMapping.plot_colorscheme_grid-Tuple{Any}">
+<div class="md-docstring-header">
+<h4 class="md-docstring-binding"><code>JuliaMapping.plot_colorscheme_grid</code> — <span class="md-docstring-sig">Tuple{Any}</span></h4>
+<a class="md-docstring-source" href="https://github.com/technocrat/JuliaMapping.jl/blob/6a3360c9e886bddc14ebd50c886fe5e96d7398e4/src/plot_colorscheme_grid.jl#L2-L43" title="View source">source</a>
+</div>
+<div class="md-docstring-content">
+<div class="md-code-block">
+<button class="md-copy-btn" title="Copy to clipboard" aria-label="Copy code"><span class="md-copy-icon">⧉</span><span class="md-copy-feedback">Copied!</span></button>
+<pre><code class="language-julia">plot_colorscheme_grid(schemes; ncol=2)</code></pre>
+</div>
+<p>Create a grid display of ColorScheme colorbars for visual comparison.</p>
+<p><strong>Arguments</strong></p>
+<ul class="md-list-tight">
+<li><p><code class="md-code-inline">schemes::Vector</code>: Vector of ColorScheme names (as symbols) or ColorScheme objects to display</p>
+</li>
+</ul>
+<p><strong>Keywords</strong></p>
+<ul class="md-list-tight">
+<li><p><code class="md-code-inline">ncol::Int=2</code>: Number of columns in the grid layout</p>
+</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul class="md-list-tight">
+<li><p><code class="md-code-inline">Figure</code>: A CairoMakie Figure object containing the colorbar grid</p>
+</li>
+</ul>
+<p><strong>Description</strong></p>
+<p>Displays multiple ColorSchemes as horizontal colorbars arranged in a grid layout. Each colorbar is labeled with its scheme name. Useful for comparing color palettes or selecting appropriate schemes for data visualization.</p>
+<p>The figure height automatically adjusts based on the number of rows needed. Each colorbar is displayed horizontally with a fixed height of 30 pixels.</p>
+<p><strong>Example</strong></p>
+<div class="md-code-block">
+<button class="md-copy-btn" title="Copy to clipboard" aria-label="Copy code"><span class="md-copy-icon">⧉</span><span class="md-copy-feedback">Copied!</span></button>
+<pre><code class="language-julia"># Display common sequential schemes
+schemes = [:viridis, :plasma, :inferno, :magma]
+f = plot_colorscheme_grid(schemes; ncol=2)
+display(f)
+
+# Compare diverging schemes
+diverging = [:RdBu, :RdYlBu, :PiYG, :BrBG]
+f = plot_colorscheme_grid(diverging; ncol=2)
+
+# Display all schemes in a category
+sequential = [:viridis, :plasma, :inferno, :magma, :cividis, :twilight]
+f = plot_colorscheme_grid(sequential; ncol=3)</code></pre>
+</div>
+<p><strong>See Also</strong></p>
+<ul class="md-list-tight">
+<li><p><code class="md-code-inline">ColorSchemes.colorschemes</code> - Dictionary of all available ColorSchemes</p>
+</li>
+<li><p>Browse schemes at: https://juliagraphics.github.io/ColorSchemes.jl/stable/catalogue/</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="md-docstring" id="JuliaMapping.plot_county_interval-Tuple{DataFrames.DataFrame, Makie.Figure, Int64, Vector{String}}">
+<div class="md-docstring-header">
+<h4 class="md-docstring-binding"><code>JuliaMapping.plot_county_interval</code> — <span class="md-docstring-sig">Tuple{DataFrames.DataFrame, Makie.Figure, Int64, Vector{String}}</span></h4>
+<a class="md-docstring-source" href="https://github.com/technocrat/JuliaMapping.jl/blob/6a3360c9e886bddc14ebd50c886fe5e96d7398e4/src/small_multiples.jl#L61-L98" title="View source">source</a>
+</div>
+<div class="md-docstring-content">
+<div class="md-code-block">
+<button class="md-copy-btn" title="Copy to clipboard" aria-label="Copy code"><span class="md-copy-icon">⧉</span><span class="md-copy-feedback">Copied!</span></button>
+<pre><code class="language-julia">plot_county_interval(data::DataFrame, f::Figure, brk::Int64, formatted_breaks::Vector{String})</code></pre>
+</div>
+<p>Plot counties within a specific population bin on a small multiples figure.</p>
+<p>Creates a single panel in a 2×2 grid showing counties that fall within a particular population bin, highlighted against a background of all counties. Part of a small multiples visualization.</p>
+<p><strong>Arguments</strong></p>
+<ul class="md-list-tight">
+<li><p><code class="md-code-inline">data::DataFrame</code>: DataFrame containing county geometries and <code class="md-code-inline">:bin</code> classification</p>
+</li>
+<li><p><code class="md-code-inline">f::Figure</code>: Makie Figure object to add the plot to</p>
+</li>
+<li><p><code class="md-code-inline">brk::Int64</code>: Bin number to plot (1-8)</p>
+</li>
+<li><p><code class="md-code-inline">formatted_breaks::Vector{String}</code>: Vector of formatted range labels for titles</p>
+</li>
+</ul>
+<p><strong>Returns</strong></p>
+<p>Nothing. Modifies the figure in place by adding a GeoAxis panel.</p>
+<p><strong>Details</strong></p>
+<ul class="md-list-tight">
+<li><p>Creates a GeoAxis in EPSG:5070 projection (US Albers Equal Area)</p>
+</li>
+<li><p>Positions panels in a 2×2 grid (bins 5-8 map to positions 1-4 for second figure)</p>
+</li>
+<li><p>Row calculation: <code class="md-code-inline">ceil(display_brk / 2)</code></p>
+</li>
+<li><p>Column calculation: odd bins → column 1, even bins → column 2</p>
+</li>
+<li><p>Background: All counties in white with thin gray borders</p>
+</li>
+<li><p>Foreground: Counties in current bin colored using YlGn (Yellow-Green) colorscheme</p>
+</li>
+<li><p>Title shows the formatted population range</p>
+</li>
+<li><p>Decorations (axes, ticks) are hidden</p>
+</li>
+</ul>
+<p><strong>Example</strong></p>
+<div class="md-code-block">
+<button class="md-copy-btn" title="Copy to clipboard" aria-label="Copy code"><span class="md-copy-icon">⧉</span><span class="md-copy-feedback">Copied!</span></button>
+<pre><code class="language-julia">f = Figure(resolution=(1200, 1000))
+for brk in 1:4
+    plot_county_interval(county_data, f, brk, formatted_breaks)
+end</code></pre>
+</div>
+<p><strong>Notes</strong></p>
+<p>Designed for creating small multiple displays showing population distribution patterns.</p>
+</div>
+</div>
+<div class="md-docstring" id="JuliaMapping.plot_named_color_groups-Tuple{AbstractString, Vector{&lt;:AbstractString}}">
+<div class="md-docstring-header">
+<h4 class="md-docstring-binding"><code>JuliaMapping.plot_named_color_groups</code> — <span class="md-docstring-sig">Tuple{AbstractString, Vector{&lt;:AbstractString}}</span></h4>
+<a class="md-docstring-source" href="https://github.com/technocrat/JuliaMapping.jl/blob/6a3360c9e886bddc14ebd50c886fe5e96d7398e4/src/plot_named_color_groups.jl#L2-L38" title="View source">source</a>
+</div>
+<div class="md-docstring-content">
+<div class="md-code-block">
+<button class="md-copy-btn" title="Copy to clipboard" aria-label="Copy code"><span class="md-copy-icon">⧉</span><span class="md-copy-feedback">Copied!</span></button>
+<pre><code class="language-julia">plot_named_color_groups(title, names; ncol=6, cell=(140,80), gap=(8,8), figsize=(1600,900))</code></pre>
+</div>
+<p>Create a visual grid display of named colors with their RGB values.</p>
+<p><strong>Arguments</strong></p>
+<ul class="md-list-tight">
+<li><p><code class="md-code-inline">title::AbstractString</code>: The title to display at the top of the plot</p>
+</li>
+<li><p><code class="md-code-inline">names::Vector{&lt;:AbstractString}</code>: Vector of color names to display</p>
+</li>
+</ul>
+<p><strong>Keywords</strong></p>
+<ul class="md-list-tight">
+<li><p><code class="md-code-inline">ncol::Int=6</code>: Number of columns in the grid layout</p>
+</li>
+<li><p><code class="md-code-inline">cell::Tuple{Int,Int}=(140,80)</code>: Width and height of each color cell in pixels</p>
+</li>
+<li><p><code class="md-code-inline">gap::Tuple{Int,Int}=(8,8)</code>: Horizontal and vertical gap between cells in pixels  </p>
+</li>
+<li><p><code class="md-code-inline">figsize::Tuple{Int,Int}=(1600,900)</code>: Overall figure size in pixels</p>
+</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul class="md-list-tight">
+<li><p><code class="md-code-inline">Figure</code>: A CairoMakie Figure object containing the color grid</p>
+</li>
+</ul>
+<p><strong>Description</strong></p>
+<p>Each color swatch displays:</p>
+<ul class="md-list-tight">
+<li><p>The color name (centered at top)</p>
+</li>
+<li><p>RGB values as decimal numbers (bottom left)</p>
+</li>
+<li><p>Text color automatically chosen (black/white) based on background brightness</p>
+</li>
+</ul>
+<p><strong>Example</strong></p>
+<div class="md-code-block">
+<button class="md-copy-btn" title="Copy to clipboard" aria-label="Copy code"><span class="md-copy-icon">⧉</span><span class="md-copy-feedback">Copied!</span></button>
+<pre><code class="language-julia"># Display a select red colors
+reds = [&quot;red&quot;, &quot;crimson&quot;, &quot;darkred&quot;, &quot;firebrick&quot;]
+f = plot_named_color_groups(&quot;Red Colors&quot;, reds; ncol=4)
+display(f)
+# All reds
+f = plot_named_color_groups(&quot;All Red Colors&quot;, :reds)</code></pre>
+</div>
+<p><strong>Throws</strong></p>
+<ul class="md-list-tight">
+<li><p>Error if any color name in <code class="md-code-inline">names</code> is not recognized by Colors.jl</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="md-docstring" id="JuliaMapping.polygon_to_archgdal-Tuple{GeometryBasics.Polygon}">
+<div class="md-docstring-header">
+<h4 class="md-docstring-binding"><code>JuliaMapping.polygon_to_archgdal</code> — <span class="md-docstring-sig">Tuple{GeometryBasics.Polygon}</span></h4>
+<a class="md-docstring-source" href="https://github.com/technocrat/JuliaMapping.jl/blob/6a3360c9e886bddc14ebd50c886fe5e96d7398e4/src/polygon_to_archgdal.jl#L2-L34" title="View source">source</a>
+</div>
+<div class="md-docstring-content">
+<div class="md-code-block">
+<button class="md-copy-btn" title="Copy to clipboard" aria-label="Copy code"><span class="md-copy-icon">⧉</span><span class="md-copy-feedback">Copied!</span></button>
+<pre><code class="language-julia">polygon_to_archgdal(poly::Polygon)</code></pre>
+</div>
+<p>Convert a GeometryBasics.Polygon to an ArchGDAL geometry object.</p>
+<p><strong>Arguments</strong></p>
+<ul class="md-list-tight">
+<li><p><code class="md-code-inline">poly</code>: A <code class="md-code-inline">Polygon</code> object from GeometryBasics containing the polygon vertices</p>
+</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul class="md-list-tight">
+<li><p>An ArchGDAL polygon geometry object that can be used for spatial operations</p>
+</li>
+</ul>
+<p><strong>Details</strong></p>
+<p>This function extracts the exterior ring coordinates from a GeometryBasics.Polygon and creates a corresponding ArchGDAL polygon. The function automatically closes the ring if it&#39;s not already closed by duplicating the first point at the end.</p>
+<p><strong>Example</strong></p>
+<div class="md-code-block">
+<button class="md-copy-btn" title="Copy to clipboard" aria-label="Copy code"><span class="md-copy-icon">⧉</span><span class="md-copy-feedback">Copied!</span></button>
+<pre><code class="language-julia">using GeometryBasics, ArchGDAL
+
+# Create a simple polygon
+points = [Point2f(0,0), Point2f(1,0), Point2f(1,1), Point2f(0,1)]
+poly = Polygon(points)
+
+# Convert to ArchGDAL geometry
+gdal_poly = polygon_to_archgdal(poly)</code></pre>
+</div>
+<p><strong>Notes</strong></p>
+<ul class="md-list-tight">
+<li><p>The function handles both closed and unclosed polygon rings</p>
+</li>
+<li><p>Returns an ArchGDAL geometry suitable for spatial analysis operations</p>
+</li>
+<li><p>Coordinate order is preserved (longitude, latitude for geographic data)</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="md-docstring" id="JuliaMapping.pump_comparison_test">
+<div class="md-docstring-header">
+<h4 class="md-docstring-binding"><code>JuliaMapping.pump_comparison_test</code> — <span class="md-docstring-sig">Union{Tuple{Any, Any}, Tuple{Any, Any, Any}}</span></h4>
+<a class="md-docstring-source" href="https://github.com/technocrat/JuliaMapping.jl/blob/6a3360c9e886bddc14ebd50c886fe5e96d7398e4/src/snow.jl#L121-L159" title="View source">source</a>
+</div>
+<div class="md-docstring-content">
+<div class="md-code-block">
+<button class="md-copy-btn" title="Copy to clipboard" aria-label="Copy code"><span class="md-copy-icon">⧉</span><span class="md-copy-feedback">Copied!</span></button>
+<pre><code class="language-julia">pump_comparison_test(pump_1_mean, other_means, n_permutations=10000)</code></pre>
+</div>
+<p>Perform a permutation test to compare one pump against the mean of other pumps.</p>
+<p>Tests whether Pump 1 has a significantly lower mean than other pumps using a one-tailed  permutation test. Inspired by John Snow&#39;s cholera analysis comparing the Broad Street pump  to other water pumps in London.</p>
+<p><strong>Arguments</strong></p>
+<ul class="md-list-tight">
+<li><p><code class="md-code-inline">pump_1_mean</code>: Mean value for the pump of interest (e.g., mean deaths)</p>
+</li>
+<li><p><code class="md-code-inline">other_means</code>: Vector of mean values for comparison pumps</p>
+</li>
+<li><p><code class="md-code-inline">n_permutations</code>: Number of permutations for the test (default: <code class="md-code-inline">10000</code>)</p>
+</li>
+</ul>
+<p><strong>Returns</strong></p>
+<p>A tuple <code class="md-code-inline">(p_value, observed_diff)</code> where:</p>
+<ul class="md-list-tight">
+<li><p><code class="md-code-inline">p_value</code>: Proportion of permutations with difference ≤ observed difference</p>
+</li>
+<li><p><code class="md-code-inline">observed_diff</code>: Observed difference (Pump 1 mean - mean of others)</p>
+</li>
+</ul>
+<p><strong>Details</strong></p>
+<ul class="md-list-tight">
+<li><p>Null hypothesis: All pumps come from the same distribution</p>
+</li>
+<li><p>Tests if Pump 1 is unusually low (one-tailed test)</p>
+</li>
+<li><p>Prints the observed difference to console</p>
+</li>
+<li><p>Randomly permutes pump labels and recalculates the test statistic</p>
+</li>
+</ul>
+<p><strong>Example</strong></p>
+<div class="md-code-block">
+<button class="md-copy-btn" title="Copy to clipboard" aria-label="Copy code"><span class="md-copy-icon">⧉</span><span class="md-copy-feedback">Copied!</span></button>
+<pre><code class="language-julia">pump_1 = 8.5  # Mean deaths near Broad Street pump
+others = [3.2, 2.8, 3.5, 2.9, 3.1]  # Mean deaths near other pumps
+p_value, diff = pump_comparison_test(pump_1, others, 10000)
+println(&quot;P-value: $p_value&quot;)
+# If p_value &lt; 0.05, Pump 1 has significantly higher mean deaths</code></pre>
+</div>
+<p><strong>Notes</strong></p>
+<ul class="md-list-tight">
+<li><p>Small p-values suggest Pump 1 is unusually high (or low, depending on metric)</p>
+</li>
+<li><p>Based on resampling without replacement (permutation test)</p>
+</li>
+<li><p>Named after John Snow&#39;s 1854 cholera outbreak investigation</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="md-docstring" id="JuliaMapping.raw_hist-Tuple{DataFrames.DataFrame, Symbol}">
+<div class="md-docstring-header">
+<h4 class="md-docstring-binding"><code>JuliaMapping.raw_hist</code> — <span class="md-docstring-sig">Tuple{DataFrames.DataFrame, Symbol}</span></h4>
+<a class="md-docstring-source" href="https://github.com/technocrat/JuliaMapping.jl/blob/6a3360c9e886bddc14ebd50c886fe5e96d7398e4/src/hist_dist.jl#L77-L95" title="View source">source</a>
+</div>
+<div class="md-docstring-content">
+<div class="md-code-block">
+<button class="md-copy-btn" title="Copy to clipboard" aria-label="Copy code"><span class="md-copy-icon">⧉</span><span class="md-copy-feedback">Copied!</span></button>
+<pre><code class="language-julia">quick_hist(df::DataFrame, column::Symbol; bins=20)</code></pre>
+</div>
+<p>Create a histogram with negative values colored brown and positive values colored green.</p>
+<p><strong>Arguments</strong></p>
+<ul class="md-list-tight">
+<li><p><code class="md-code-inline">df</code>: DataFrame containing the data</p>
+</li>
+<li><p><code class="md-code-inline">column::Symbol</code>: Column name to plot</p>
+</li>
+<li><p><code class="md-code-inline">bins=20</code>: Number of histogram bins (default: 20)</p>
+</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul class="md-list-tight">
+<li><p>Figure object from AlgebraOfGraphics</p>
+</li>
+</ul>
+<p><strong>Example</strong></p>
+<div class="md-code-block">
+<button class="md-copy-btn" title="Copy to clipboard" aria-label="Copy code"><span class="md-copy-icon">⧉</span><span class="md-copy-feedback">Copied!</span></button>
+<pre><code class="language-julia">fg = quick_hist(df, :Population)
+fg = quick_hist(df, :Population, bins=30)</code></pre>
+</div>
+</div>
+</div>
+<div class="md-docstring" id="JuliaMapping.ripleys_k-Tuple{Any, Any}">
+<div class="md-docstring-header">
+<h4 class="md-docstring-binding"><code>JuliaMapping.ripleys_k</code> — <span class="md-docstring-sig">Tuple{Any, Any}</span></h4>
+<a class="md-docstring-source" href="https://github.com/technocrat/JuliaMapping.jl/blob/6a3360c9e886bddc14ebd50c886fe5e96d7398e4/src/snow.jl#L182-L231" title="View source">source</a>
+</div>
+<div class="md-docstring-content">
+<div class="md-code-block">
+<button class="md-copy-btn" title="Copy to clipboard" aria-label="Copy code"><span class="md-copy-icon">⧉</span><span class="md-copy-feedback">Copied!</span></button>
+<pre><code class="language-julia">ripleys_k(coords, distances; area=nothing)</code></pre>
+</div>
+<p>Calculate Ripley&#39;s K-function to detect spatial clustering or dispersion of point patterns.</p>
+<p>Ripley&#39;s K-function measures the spatial distribution of points at various distance scales. Values higher than expected indicate clustering; lower values indicate dispersion.</p>
+<p><strong>Arguments</strong></p>
+<ul class="md-list-tight">
+<li><p><code class="md-code-inline">coords</code>: 2×n matrix where each column is a point <code class="md-code-inline">[x, y]</code></p>
+</li>
+<li><p><code class="md-code-inline">distances</code>: Vector of distance thresholds to evaluate</p>
+</li>
+<li><p><code class="md-code-inline">area</code>: Optional study area size; if <code class="md-code-inline">nothing</code>, calculated as bounding box area</p>
+</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul class="md-list-tight">
+<li><p>Vector of K-function values, one for each distance in <code class="md-code-inline">distances</code></p>
+</li>
+</ul>
+<p><strong>Formula</strong></p>
+<p>For distance d: K(d) = (A/n²) × 2 × (number of point pairs within distance d)</p>
+<p>Where:</p>
+<ul class="md-list-tight">
+<li><p>A = study area</p>
+</li>
+<li><p>n = number of points</p>
+</li>
+</ul>
+<p><strong>Interpretation</strong></p>
+<ul class="md-list-tight">
+<li><p>K(d) ≈ πd² for complete spatial randomness (CSR)</p>
+</li>
+<li><p>K(d) &gt; πd² suggests clustering at distance d</p>
+</li>
+<li><p>K(d) &lt; πd² suggests dispersion/regularity at distance d</p>
+</li>
+<li><p>Often transformed to L(d) = √(K(d)/π) - d for easier interpretation</p>
+</li>
+</ul>
+<p><strong>Example</strong></p>
+<div class="md-code-block">
+<button class="md-copy-btn" title="Copy to clipboard" aria-label="Copy code"><span class="md-copy-icon">⧉</span><span class="md-copy-feedback">Copied!</span></button>
+<pre><code class="language-julia"># Points in 2D space (cholera deaths)
+coords = [1.0 2.0 3.0 5.0 5.5;
+          1.0 1.5 2.0 5.0 5.2]
+distances = [0.5, 1.0, 2.0, 3.0]
+k_values = ripleys_k(coords, distances)
+
+# Check for clustering
+for (d, k) in zip(distances, k_values)
+    expected = π * d^2
+    println(&quot;Distance $d: K=$k (expected=$expected)&quot;)
+end</code></pre>
+</div>
+<p><strong>Notes</strong></p>
+<ul class="md-list-tight">
+<li><p>Computational complexity: O(n² × length(distances))</p>
+</li>
+<li><p>Named after statistician Brian Ripley</p>
+</li>
+<li><p>Commonly used in spatial epidemiology and ecology</p>
+</li>
+<li><p>John Snow&#39;s cholera analysis can be analyzed with this function</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="md-docstring" id="JuliaMapping.scaled_dist-Tuple{DataFrames.DataFrame, Symbol}">
+<div class="md-docstring-header">
+<h4 class="md-docstring-binding"><code>JuliaMapping.scaled_dist</code> — <span class="md-docstring-sig">Tuple{DataFrames.DataFrame, Symbol}</span></h4>
+<a class="md-docstring-source" href="https://github.com/technocrat/JuliaMapping.jl/blob/6a3360c9e886bddc14ebd50c886fe5e96d7398e4/src/hist_dist.jl#L36-L64" title="View source">source</a>
+</div>
+<div class="md-docstring-content">
+<p>scaled<em>dist(df::DataFrame, col::Symbol; bandwidth</em>pct=0.05, bins=30)</p>
+<p>Plot the distribution of a numeric column with adaptive kernel bandwidth scaling.</p>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><p>df::DataFrame: Input DataFrame.</p>
+</li>
+<li><p>col::Symbol: Column name to visualize.</p>
+</li>
+<li><p>bandwidth_pct::Float64=0.05: Fraction of the data range used as bandwidth</p>
+</li>
+</ul>
+<p>for the kernel density estimate.</p>
+<ul class="md-list-tight">
+<li><p>bins::Int=30: Number of histogram bins.</p>
+</li>
+</ul>
+<p><strong>Details</strong></p>
+<p>Computes a histogram normalized as a PDF, and overlays a kernel density curve with bandwidth proportional to the column range (bandwidth = range * bandwidth_pct).</p>
+<p><strong>Returns</strong></p>
+<p>Displays an AlgebraOfGraphics plot showing the histogram and scaled density.</p>
+<p><strong>Example</strong></p>
+<p>scaled<em>dist(df, :income; bandwidth</em>pct=0.03, bins=40)</p>
+</div>
+</div>
+<div class="md-docstring" id="JuliaMapping.show_named_color_groups-Tuple{}">
+<div class="md-docstring-header">
+<h4 class="md-docstring-binding"><code>JuliaMapping.show_named_color_groups</code> — <span class="md-docstring-sig">Tuple{}</span></h4>
+<a class="md-docstring-source" href="https://github.com/technocrat/JuliaMapping.jl/blob/6a3360c9e886bddc14ebd50c886fe5e96d7398e4/src/plot_named_color_groups.jl#L108-L122" title="View source">source</a>
+</div>
+<div class="md-docstring-content">
+<div class="md-code-block">
+<button class="md-copy-btn" title="Copy to clipboard" aria-label="Copy code"><span class="md-copy-icon">⧉</span><span class="md-copy-feedback">Copied!</span></button>
+<pre><code class="language-julia">show_named_color_groups()</code></pre>
+</div>
+<p>Print the available named color groups to the console.</p>
+<p>Displays the names of predefined color categories that can be used with  <code class="md-code-inline">plot_named_color_group()</code>. These correspond to color arrays defined in  the included &quot;named_colors.jl&quot; file.</p>
+<p><strong>Example</strong></p>
+<div class="md-code-block">
+<button class="md-copy-btn" title="Copy to clipboard" aria-label="Copy code"><span class="md-copy-icon">⧉</span><span class="md-copy-feedback">Copied!</span></button>
+<pre><code class="language-julia">show_named_color_groups()
+# Output: whites reds oranges yellows greens cyans blues purples pinks browns grays</code></pre>
+</div>
+</div>
+</div>
+<div class="md-docstring" id="JuliaMapping.split_string_into_n_parts-Tuple{String, Int64}">
+<div class="md-docstring-header">
+<h4 class="md-docstring-binding"><code>JuliaMapping.split_string_into_n_parts</code> — <span class="md-docstring-sig">Tuple{String, Int64}</span></h4>
+<a class="md-docstring-source" href="https://github.com/technocrat/JuliaMapping.jl/blob/6a3360c9e886bddc14ebd50c886fe5e96d7398e4/src/split_strings_into_n_parts.jl#L2-L26" title="View source">source</a>
+</div>
+<div class="md-docstring-content">
+<div class="md-code-block">
+<button class="md-copy-btn" title="Copy to clipboard" aria-label="Copy code"><span class="md-copy-icon">⧉</span><span class="md-copy-feedback">Copied!</span></button>
+<pre><code class="language-julia">split_string_into_n_parts(text::String, n::Int)</code></pre>
+</div>
+<p>Split a string into n approximately equal parts, inserting newlines at word boundaries.</p>
+<p><strong>Arguments</strong></p>
+<ul class="md-list-tight">
+<li><p><code class="md-code-inline">text::String</code>: The text string to split</p>
+</li>
+<li><p><code class="md-code-inline">n::Int</code>: Number of parts to split the string into</p>
+</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul class="md-list-tight">
+<li><p><code class="md-code-inline">String</code>: The original text with newlines inserted to create n parts</p>
+</li>
+</ul>
+<p><strong>Examples</strong></p>
+<div class="md-code-block">
+<button class="md-copy-btn" title="Copy to clipboard" aria-label="Copy code"><span class="md-copy-icon">⧉</span><span class="md-copy-feedback">Copied!</span></button>
+<pre><code class="language-julia">text = &quot;This is a long text that needs to be split into multiple parts for better formatting.&quot;
+result = split_string_into_n_parts(text, 3)
+# Returns text split into 3 parts with newlines at word boundaries</code></pre>
+</div>
+<p><strong>Notes</strong></p>
+<ul class="md-list-tight">
+<li><p>Attempts to break at word boundaries when possible</p>
+</li>
+<li><p>If a word is longer than the target part length, it will be broken mid-word</p>
+</li>
+<li><p>Each part will be approximately equal in length</p>
+</li>
+<li><p>Preserves original spacing between words</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="md-docstring" id="JuliaMapping.uniform_subset_sum_indices-Tuple{AbstractVector{&lt;:Integer}, Integer}">
+<div class="md-docstring-header">
+<h4 class="md-docstring-binding"><code>JuliaMapping.uniform_subset_sum_indices</code> — <span class="md-docstring-sig">Tuple{AbstractVector{&lt;:Integer}, Integer}</span></h4>
+<a class="md-docstring-source" href="https://github.com/technocrat/JuliaMapping.jl/blob/6a3360c9e886bddc14ebd50c886fe5e96d7398e4/src/snow.jl#L2-L38" title="View source">source</a>
+</div>
+<div class="md-docstring-content">
+<div class="md-code-block">
+<button class="md-copy-btn" title="Copy to clipboard" aria-label="Copy code"><span class="md-copy-icon">⧉</span><span class="md-copy-feedback">Copied!</span></button>
+<pre><code class="language-julia">uniform_subset_sum_indices(counts::AbstractVector{&lt;:Integer}, target::Integer; rng=Random.default_rng())</code></pre>
+</div>
+<p>Find indices of elements that sum to a target value using uniform random selection via dynamic programming.</p>
+<p>Uses a dynamic programming approach to uniformly sample from all possible subsets of <code class="md-code-inline">counts</code>  that sum exactly to <code class="md-code-inline">target</code>. Each valid subset has an equal probability of being selected.</p>
+<p><strong>Arguments</strong></p>
+<ul class="md-list-tight">
+<li><p><code class="md-code-inline">counts::AbstractVector{&lt;:Integer}</code>: Vector of integer values (e.g., counts per category)</p>
+</li>
+<li><p><code class="md-code-inline">target::Integer</code>: The desired sum</p>
+</li>
+<li><p><code class="md-code-inline">rng</code>: Random number generator (default: <code class="md-code-inline">Random.default_rng()</code>)</p>
+</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul class="md-list-tight">
+<li><p>Vector of indices whose corresponding <code class="md-code-inline">counts</code> values sum to <code class="md-code-inline">target</code></p>
+</li>
+<li><p>Returns empty <code class="md-code-inline">Int[]</code> if no valid subset exists</p>
+</li>
+</ul>
+<p><strong>Algorithm</strong></p>
+<ol class="md-list-tight">
+<li><p>Builds a DP table counting all possible ways to achieve each sum</p>
+</li>
+<li><p>Uses <code class="md-code-inline">BigInt</code> arithmetic to handle large combinatorial counts</p>
+</li>
+<li><p>Backtracks through the DP table, randomly choosing to include/exclude each element</p>
+</li>
+<li><p>Inclusion probability = (ways to include) / (total ways from this state)</p>
+</li>
+</ol>
+<p><strong>Example</strong></p>
+<div class="md-code-block">
+<button class="md-copy-btn" title="Copy to clipboard" aria-label="Copy code"><span class="md-copy-icon">⧉</span><span class="md-copy-feedback">Copied!</span></button>
+<pre><code class="language-julia">counts = [10, 20, 30, 40, 50]
+target = 80
+indices = uniform_subset_sum_indices(counts, target)
+# Might return [1, 3, 4] since counts[[1,3,4]] = [10,30,40] sum to 80
+sum(counts[indices]) == target  # Always true if indices is non-empty</code></pre>
+</div>
+<p><strong>Notes</strong></p>
+<ul class="md-list-tight">
+<li><p>Useful for statistical sampling when you need exactly N items from categories</p>
+</li>
+<li><p>Computationally intensive for large vectors or large target values</p>
+</li>
+<li><p>Related to the subset sum problem, but with uniform random selection</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="md-docstring" id="JuliaMapping.with_commas-Tuple{Any}">
+<div class="md-docstring-header">
+<h4 class="md-docstring-binding"><code>JuliaMapping.with_commas</code> — <span class="md-docstring-sig">Tuple{Any}</span></h4>
+<a class="md-docstring-source" href="https://github.com/technocrat/JuliaMapping.jl/blob/6a3360c9e886bddc14ebd50c886fe5e96d7398e4/src/with_commas.jl#L2-L26" title="View source">source</a>
+</div>
+<div class="md-docstring-content">
+<div class="md-code-block">
+<button class="md-copy-btn" title="Copy to clipboard" aria-label="Copy code"><span class="md-copy-icon">⧉</span><span class="md-copy-feedback">Copied!</span></button>
+<pre><code class="language-julia">with_commas(x)</code></pre>
+</div>
+<p>Format numeric values with comma separators for thousands.</p>
+<p>Converts numeric values to Int64 and adds comma separators using the Humanize.digitsep function, making large numbers more readable.</p>
+<p><strong>Arguments</strong></p>
+<ul class="md-list-tight">
+<li><p><code class="md-code-inline">x</code>: A numeric value or array of numeric values</p>
+</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul class="md-list-tight">
+<li><p>A string or array of strings with comma-separated digits</p>
+</li>
+</ul>
+<p><strong>Example</strong></p>
+<div class="md-code-block">
+<button class="md-copy-btn" title="Copy to clipboard" aria-label="Copy code"><span class="md-copy-icon">⧉</span><span class="md-copy-feedback">Copied!</span></button>
+<pre><code class="language-julia">with_commas(1000000)        # Returns &quot;1,000,000&quot;
+with_commas([1234, 5678])   # Returns [&quot;1,234&quot;, &quot;5,678&quot;]
+with_commas(1234.56)        # Returns &quot;1,235&quot; (rounded to Int64)</code></pre>
+</div>
+<p><strong>Notes</strong></p>
+<ul class="md-list-tight">
+<li><p>Values are converted to Int64, so decimal portions are truncated/rounded</p>
+</li>
+<li><p>Uses the Humanize package for formatting</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="md-docstring" id="JuliaMapping.@ensure_types-Tuple{Any, Vararg{Any}}">
+<div class="md-docstring-header">
+<h4 class="md-docstring-binding"><code>JuliaMapping.@ensure_types</code> — <span class="md-docstring-sig">Tuple{Any, Vararg{Any}}</span></h4>
+<a class="md-docstring-source" href="https://github.com/technocrat/JuliaMapping.jl/blob/6a3360c9e886bddc14ebd50c886fe5e96d7398e4/src/ensure_types.jl#L1-L36" title="View source">source</a>
+</div>
+<div class="md-docstring-content">
+<div class="md-code-block">
+<button class="md-copy-btn" title="Copy to clipboard" aria-label="Copy code"><span class="md-copy-icon">⧉</span><span class="md-copy-feedback">Copied!</span></button>
+<pre><code class="language-julia">@ensure_types(df, type_specs...)</code></pre>
+</div>
+<p>Ensure that specified columns in a DataFrame have the correct data types by performing automatic type conversions.</p>
+<p><strong>Arguments</strong></p>
+<ul class="md-list-tight">
+<li><p><code class="md-code-inline">df</code>: The DataFrame to modify</p>
+</li>
+<li><p><code class="md-code-inline">type_specs...</code>: Variable number of type specifications in the format <code class="md-code-inline">column::Type</code></p>
+</li>
+</ul>
+<p><strong>Type Specifications</strong></p>
+<p>Each type specification should be in the format <code class="md-code-inline">column::Type</code> where:</p>
+<ul class="md-list-tight">
+<li><p><code class="md-code-inline">column</code> is the column name (Symbol or String)</p>
+</li>
+<li><p><code class="md-code-inline">Type</code> is the target Julia type (e.g., <code class="md-code-inline">Int</code>, <code class="md-code-inline">Float64</code>, <code class="md-code-inline">String</code>)</p>
+</li>
+</ul>
+<p><strong>Supported Conversions</strong></p>
+<ul class="md-list-tight">
+<li><p>String to Integer: Uses <code class="md-code-inline">parse()</code> to convert string representations of numbers</p>
+</li>
+<li><p>String to Float: Uses <code class="md-code-inline">parse()</code> to convert string representations of floating-point numbers  </p>
+</li>
+<li><p>Float to Integer: Uses <code class="md-code-inline">round()</code> to convert floating-point numbers to integers</p>
+</li>
+<li><p>Other conversions: Uses <code class="md-code-inline">convert()</code> for general type conversions</p>
+</li>
+</ul>
+<p><strong>Examples</strong></p>
+<div class="md-code-block">
+<button class="md-copy-btn" title="Copy to clipboard" aria-label="Copy code"><span class="md-copy-icon">⧉</span><span class="md-copy-feedback">Copied!</span></button>
+<pre><code class="language-julia"># Convert Population to Int and Expend to Float64
+@ensure_types df Population::Int Expend::Float64
+
+# Convert multiple columns at once
+@ensure_types df Deaths::Int Population::Int Expend::Float64</code></pre>
+</div>
+<p><strong>Notes</strong></p>
+<ul class="md-list-tight">
+<li><p>The macro modifies the DataFrame in-place</p>
+</li>
+<li><p>Prints progress messages for successful conversions</p>
+</li>
+<li><p>Issues warnings for columns that don&#39;t exist</p>
+</li>
+<li><p>Throws errors for conversion failures</p>
+</li>
+<li><p>Returns the modified DataFrame</p>
+</li>
+</ul>
+</div>
+</div>
+      </article>
+      <footer class="md-footer">
+<p>Built with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and <a href="https://github.com/mthelm85/MaterialDocs.jl">MaterialDocs.jl</a>.</p>
+      </footer>
+    </main>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/julia.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/julia-repl.min.js"></script>
+  <script>hljs.highlightAll();</script>
+  <script src="./siteinfo.js"></script>
+  <script src="./../versions.js"></script>
+  <script src="./assets/materialdocs.js?v=ca5aa1fe"></script>
+</body>
+</html>
