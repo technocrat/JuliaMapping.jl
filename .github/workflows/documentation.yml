@@ -1,0 +1,36 @@
+name: Documentation
+
+on:
+  push:
+    branches:
+      - main
+    tags: '*'
+  pull_request:
+  # Run against a tag ref to build stable docs; TagBot dispatches this
+  # because tags pushed with the workflow token do not trigger workflows
+  workflow_dispatch:
+
+# Documenter pushes the built site to the gh-pages branch and reports
+# preview status on pull requests
+permissions:
+  contents: write
+  pull-requests: read
+  statuses: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: julia-actions/setup-julia@v2
+        with:
+          version: '1.11'
+      - uses: julia-actions/cache@v2
+      - name: Install dependencies
+        run: julia --project=docs/ -e 'using Pkg; Pkg.develop(PackageSpec(path=pwd())); Pkg.instantiate()'
+      - name: Build and deploy
+        # Deploy with the workflow token (contents: write above). Passing a
+        # DOCUMENTER_KEY would make Documenter push over SSH instead
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: julia --project=docs/ docs/make.jl
